@@ -1,0 +1,46 @@
+@font-face {
+    font-family: noodle;
+    src: url(../../fonts/SVN-BigNoodleTitling.otf);
+}
+
+.container * {
+    color: #CBE4DE;
+    font-size: 1.5vw;
+}
+
+.container {
+    color: white;
+    font-family: noodle;
+    display: flex;   
+    justify-content: space-between;
+    background-color: #2C3333;
+    padding: 1.5vw 3vw;
+    box-shadow: 0px 7px 5px #888888;
+}
+
+.logo {
+    display: flex;
+}
+
+.logo i {
+    padding-top: 0.3vw;
+    margin-right: 1vw;
+    color: #0E8388;
+}
+
+.logo a {
+    color:#CBE4DE; 
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    padding: 0vw 1.2vw;
+}
