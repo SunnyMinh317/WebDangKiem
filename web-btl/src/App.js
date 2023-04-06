@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import HeaderAdmin from './components/HeaderAdmin.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
 import DSXe from './pages/admin/DSXe';
 import DSTrungTam from './pages/admin/DSTrungTam';
 import CapTaiKhoan from './pages/admin/CapTaiKhoan';
-import Login from './pages/Login';
 
 function App() {
   return (

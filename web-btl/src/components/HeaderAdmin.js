@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const HeaderAdmin = () => {
     return (
-        <div className={HeaderCSS.container}>
+        <header className={HeaderCSS.container}>
             <div className={HeaderCSS.logo}>
                 <i class="fa-solid fa-bus"></i>
                 <a>
@@ -18,7 +18,7 @@ const HeaderAdmin = () => {
                     <li id="field"><Link to="/captaikhoan">CẤP TÀI KHOẢN</Link></li>
                 </ul>
             </nav>
-        </div>
+        </header>
     )
 }
 

@@ -1,0 +1,94 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+
+.table * {
+    font-size: 0.8vw;
+    font-family: titi;
+}
+
+.table td, .table th {
+    border: none;
+    padding: 8px;
+    text-align: center;
+}
+
+.table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #0E8388;
+    border: 1px solid #0c6b6e;
+    color: white;
+}
+
+.table, .table td {
+    border: 1px solid rgb(241, 241, 241);
+}
+
+.table th:hover {
+    background-color: #0c6b6e;
+    border:none;
+}
+
+table td:hover {
+    background-color: #d4d4d4;
+}
+
+.table tr:hover {
+    background-color: #ddd;
+    border:none;
+}
+
+.headerIcon {
+    font-family: initial;
+    margin-left: 0.5vw;
+}
+
+.id-col {
+    font-style: italic;
+}
+
+.filterInput {
+    width: inherit;
+}
+
+.center-col {
+    background-color: black;
+}
+
+.sortBtn {
+    margin-left: 0.5vw;
+}
+
+.sortBtn:hover {
+    color:#9cfcff;
+}
+
+.arrowSpan {
+    width: 100px;
+}
+
+.arrowIcon {
+    color: #9cfcff;
+}
+
+.invisible {
+    color: transparent;
+}
+
+.car_name {
+    background-color: black;
+}
