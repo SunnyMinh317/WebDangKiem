@@ -1,17 +1,17 @@
 import React from "react";
-import HeaderAdmin from "../../components/HeaderAdmin";
+import HeaderCenter from "../../components/HeaderCenter";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 import Table from "../../components/tables/Table";
 
-const DSTrungTam = () => {
+const CenterDSXe = () => {
     return (
         <div className={MainLayoutCSS.container}>
-            <HeaderAdmin className={MainLayoutCSS.header}/>
+            <HeaderCenter className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
-                <Table title="DANH SÁCH TRUNG TÂM" dataLink="./MOCK_DATA.json"/>
+                <Table title="DANH SÁCH XE" dataLink="./MOCK_DATA.json"/>
             </div>
         </div>
     )
 }
 
-export default DSTrungTam;
+export default CenterDSXe;

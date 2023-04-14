@@ -1,16 +1,15 @@
 import React from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
-import Footer from "../../components/Footer";
 import MainLayoutCSS from "../style/MainLayout.module.css";
-import DSXeCSS from "../style/DSXe.module.css";
-import CarList from "../../components/tables/cuc_table/car_list/CarList";
+import Table from "../../components/tables/Table";
+import { ColumnCenterCarList } from "./ColumnCenterCarList";
 
 const DSXe = () => {
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
-                <CarList/>
+                <Table title="DANH SÁCH XE" dataLink="mock_full_data.json" columnSet={ColumnCenterCarList}/>
             </div>
         </div>
     )

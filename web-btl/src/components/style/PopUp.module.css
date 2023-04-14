@@ -1,0 +1,55 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.content {
+    border-radius: 15px;
+    width: 30vw;
+    background-color: #fff5ee;
+    box-shadow: 0px 0px 4px black;
+    padding: 2rem;
+}
+
+.closeBtnContainer {
+    width: 100%;
+    position: relative;
+    top: -13px;
+    right: -13px;
+}
+
+.closeBtn {
+    float: right;
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background-color: rgb(255, 122, 122);
+    box-shadow: 0px 0px 4px black;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.closeBtnIcon {
+    font-size: 15px;
+    color: #e1d7d0;
+}
+
+.closeBtn:hover {
+    box-shadow: 0px 0px 2px black;
+    background-color: rgb(254, 63, 63);
+    cursor: pointer;
+}

@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import HeaderAdmin from './components/HeaderAdmin.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import DSXe from './pages/admin/DSXe';
 import DSTrungTam from './pages/admin/DSTrungTam';
 import CapTaiKhoan from './pages/admin/CapTaiKhoan';
+import CenterDSXe from './pages/center/CenterDSXe';
+import AddCar from './pages/center/AddCar';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path='/danhsachxe' element={<DSXe/>}/>
         <Route path='/danhsachtrungtam' element={<DSTrungTam/>}/>
         <Route path='/captaikhoan' element={<CapTaiKhoan/>}/>
+        <Route path='/dsxetrungtam' element={<CenterDSXe/>}/>
+        <Route path='/themxe' element={<AddCar/>}/>
       </Routes>
     </BrowserRouter>
   )
