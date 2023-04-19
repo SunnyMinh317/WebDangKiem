@@ -6,6 +6,12 @@ const PORT = process.env.PORT || 8800;
 const app = express();
 
 
+
+
+
+
+
+//Test
 app.get('/data', function (req, res) {
   var sql = "SELECT * FROM centre";
   con.query(sql, function(err, results) {
@@ -21,6 +27,7 @@ app.get('/owner', function (req, res) {
     res.send(results);
   });
 });
+//test
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
