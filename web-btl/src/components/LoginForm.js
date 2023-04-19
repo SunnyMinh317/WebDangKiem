@@ -9,10 +9,12 @@ import {
     IconButton,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React, { useState } from "react";
+import React, { useState, useContext }from "react";
 import FormCSS from "./style/Form.module.css";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 const theme = createTheme({
     palette: {
@@ -40,6 +42,34 @@ const theme = createTheme({
 });
 
 const LoginForm = () => {
+    //Phan them
+    const [inputs, setInputs] = useState({
+        username: "",
+        password: "",
+      });
+      const [err, setError] = useState(null);
+
+      const {login} = useContext(AuthContext)
+    
+      const navigate = useNavigate();
+    
+      const handleChange = (e) => {
+        setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        console.log(e.target.value);
+      };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          await login(inputs)
+          navigate("/danhsachxe")
+        } catch (err) {
+          setError(err.response.data);
+        }
+      };
+
+    //Phan them
+
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -62,7 +92,9 @@ const LoginForm = () => {
                                     className={FormCSS.textField}
                                     type="email"
                                     label="Email"
+                                    name="username"
                                     fullWidth
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid xs={12} item>
@@ -70,6 +102,8 @@ const LoginForm = () => {
                                     className={FormCSS.textField}
                                     label="Password"
                                     type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    onChange={handleChange}
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position="end">
@@ -105,6 +139,7 @@ const LoginForm = () => {
                                     variant="contained"
                                     fullWidth
                                     className={FormCSS.btn}
+                                    onClick={handleSubmit}
                                 >
                                     Đăng nhập
                                 </Button>
