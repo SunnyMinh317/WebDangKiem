@@ -29,6 +29,6 @@ app.listen(PORT, () => {
 var con = mysql2.createConnection({
     host: "localhost",
     user: "root",
-    password: "24M@mbaMentality",
-    database: "web_back_end"
+    password: "12345678",
+    database: "registry_total"
   });
