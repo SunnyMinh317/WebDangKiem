@@ -44,7 +44,7 @@ const theme = createTheme({
 const LoginForm = () => {
     //Phan them
     const [inputs, setInputs] = useState({
-        username: "",
+        email: "",
         password: "",
       });
       const [err, setError] = useState(null);
@@ -61,7 +61,7 @@ const LoginForm = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          await login(inputs)
+          await login(inputs)   
           navigate("/danhsachxe")
         } catch (err) {
           setError(err.response.data);
@@ -92,7 +92,7 @@ const LoginForm = () => {
                                     className={FormCSS.textField}
                                     type="email"
                                     label="Email"
-                                    name="username"
+                                    name="email"
                                     fullWidth
                                     onChange={handleChange}
                                 />
@@ -155,6 +155,7 @@ const LoginForm = () => {
                                     </div>
                                 </div>
                             </Grid>
+                            {err && <p>{err}</p>}
                         </Grid>
                     </CardContent>
                 </Card>

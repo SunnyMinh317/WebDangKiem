@@ -28,3 +28,6 @@ yarn-error.log*
 
 *.gitignore
 package-lock.json
+
+# database config
+db.js
