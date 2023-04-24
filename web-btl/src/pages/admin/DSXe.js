@@ -9,7 +9,7 @@ const DSXe = () => {
     const [backendData, setBackendData] = useState([{}]);
 
     useEffect(() => {
-        fetch("/data")
+        fetch("/ownervehicles")
           .then((respone) => respone.json())
           .then((data) => {
             setBackendData(data)
