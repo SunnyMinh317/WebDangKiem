@@ -2,7 +2,7 @@ import express from "express"
 import db from "./db.js"
 import cors from "cors"
 import bodyParser from "body-parser"
-import authRoutes from "./routes/auth.js"
+import centreRoutes from "./routes/centreRoutes.js"
 // import cookiesParser from "cookie-parser"
 
 const PORT = process.env.PORT || 8800;
@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 // app.use(bodyParser.json())
 // app.use(cookiesParser)
 
-app.use("/auth", authRoutes)
+app.use("/centre", centreRoutes)
 
 //Test
 app.get('/data', function (req, res) {
