@@ -45,9 +45,15 @@ app.get('/owner', function (req, res) {
     res.send(results);
   });
 });
-//test
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+var con = mysql2.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "24M@mbaMentality",
+  database: "web_back_end",
+});

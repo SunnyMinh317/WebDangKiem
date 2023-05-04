@@ -38,7 +38,6 @@ const theme = createTheme({
 });
 
 const AccountGenForm = () => {
-
     const[inputs, setInputs] = useState ({
         city:"",
         district:"",
@@ -116,7 +115,6 @@ const AccountGenForm = () => {
                                     fullWidth
                                     required
                                     onChange={handleChange}
-
                                 />
                             </Grid>
 
@@ -129,7 +127,6 @@ const AccountGenForm = () => {
                                     fullWidth
                                     required
                                     onChange={handleChange}
-
                                 />
                             </Grid>
                             <Grid xs={12}  item>
@@ -140,7 +137,6 @@ const AccountGenForm = () => {
                                     fullWidth
                                     required
                                     onChange={handleChange}
-
                                 />
                             </Grid>
                             <Grid xs={12} item>
