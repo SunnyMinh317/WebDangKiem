@@ -1,10 +1,11 @@
 import express from "express"
-import { login, register } from "../controller/centreControl.js";
+import { getAllVehicle } from "../controller/vehicleControl.js";
 import db from "../db.js";
+
 
 const router = express.Router();
 
-router.post("/login", login)
-router.post("/register", register)
+router.get("/getAllVehicle", getAllVehicle)
+
 
 export default router
