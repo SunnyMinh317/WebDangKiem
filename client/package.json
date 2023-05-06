@@ -23,14 +23,13 @@
     "react-icons": "^4.8.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.9.0",
-    "react-scripts": "^2.1.8",
     "react-table": "^7.8.0",
     "reactstrap": "^9.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
   }
 }
