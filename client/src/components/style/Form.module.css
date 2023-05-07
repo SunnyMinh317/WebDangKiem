@@ -8,7 +8,7 @@
 }
 
 .formContainer {
-    max-width: 400px;
+    max-width: 80%;
     padding: 20px 10px;
     background-color: #2C3333!important;
     border-radius: 10px;
@@ -56,4 +56,12 @@
     justify-content: center;
     font-size: small;
     margin-top: 20px;
+}
+
+input {
+    display: none;
+}
+
+.ButtonIcon {
+    margin-left: 10px;
 }

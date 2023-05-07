@@ -69,7 +69,6 @@ const LoginForm = () => {
       };
 
     //Phan them
-
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);

@@ -6,7 +6,6 @@ import { faBus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
-    
     return (
         <div className={LoginCSS.container}>
             <div className={LoginCSS.imgContainer}>

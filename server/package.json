@@ -1,0 +1,34 @@
+{
+    "name": "express",
+    "version": "1.0.0",
+    "description": "",
+    "proxy": "http://localhost:8800",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "build": "babel src -d lib",
+      "test": "jest",
+      "start": "nodemon index.js",
+      "dev": "nodemon index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/SunnyMinh317/WEB-BTL.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/SunnyMinh317/WEB-BTL/issues"
+    },
+    "homepage": "https://github.com/SunnyMinh317/WEB-BTL#readme",
+    "dependencies": {
+      "bcrypt": "^5.1.0",
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "mysql2": "^3.2.1",
+      "yarn": "^1.22.19"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.22"
+    }
+  }

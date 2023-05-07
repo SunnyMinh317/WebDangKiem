@@ -31,8 +31,6 @@ const DSXe = () => {
         getAllVehicle()
     }, [])
     
-    console.log(backendData);
-
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header}/>
