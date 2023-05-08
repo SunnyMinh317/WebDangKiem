@@ -22,6 +22,7 @@ import React, { useState, useRef } from "react";
 import FormCSS from "./style/Form.module.css";
 import { faUpload, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const theme = createTheme({
     palette: {
@@ -92,6 +93,29 @@ const AddCarForm = () => {
 
     const handleButtonClick = () => {
         inputRef.current.click();
+    };
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileInput = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        console.log(file.name);
+        const fileName = file.name;
+        document.getElementById("selected-file-name").innerText = fileName;
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // console.log(selectedFile);
+        const formData = new FormData()
+        formData.append('import-csv', selectedFile)
+
+        axios.post("/csv/import-csv", formData, {
+        }).then(res => {
+            console.log(res)
+
+        }).catch(err => console.log(err))
     };
 
     return (
@@ -325,18 +349,41 @@ const AddCarForm = () => {
                     justifyContent="center"
                     style={{ marginTop: "10px", marginBottom:"5px" }}
                 >
-                    <label htmlFor="upload-excel">
-                        <input
-                            type="file"
-                            name="upload-excel"
-                            id="upload-excel"
-                            accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        />
-                        <Button variant="contained" component="span" >
-                            Nhập file
-                            <FontAwesomeIcon icon={faUpload} className={FormCSS.ButtonIcon} />
-                        </Button>
-                    </label>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="upload-excel">
+                            <input
+                                type="file"
+                                name="import-csv"
+                                id="upload-excel"
+                                accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                onChange={handleFileInput}
+                            />
+                            <Button variant="contained" component="span">
+                                Nhập file
+                                <FontAwesomeIcon
+                                    icon={faUpload}
+                                    className={FormCSS.ButtonIcon}
+                                />
+                            </Button>
+                            <div id="selected-file-name"></div>
+                        </label>
+                        <Grid
+                            container
+                            spacing={0}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="center"
+                            style={{ marginTop: "10px", marginBottom: "5px" }}
+                        >
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                disabled={!selectedFile}
+                            >
+                                Submit
+                            </Button>
+                        </Grid>
+                    </form>
                 </Grid>
             </ThemeProvider>
         </div>

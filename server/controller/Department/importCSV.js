@@ -1,9 +1,12 @@
-import db from "./db.js";
+import db from '../../db.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import multer from "multer";
 import path from "path";
 import csvtojson from "csvtojson"
+import express from "express"
+
+const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,14 +25,21 @@ var upload = multer({
 });
 
 
-export default function importCSV(req, res){
+router.post('/import-csv', upload.single("import-csv"), (req, res) =>{
     console.log(req.file.filename)
+    console.log(req.file.path)
     tranferCSV(req.file.filename)
-    res.status(200).json("Upload ok")
-}
+    res.status(200).json("Upload csv ok")
+});
+
+router.get('/test', (req, res) =>{
+    res.status(200).json("test ok")
+
+});
 
 function tranferCSV(pathToFile) {
-    csvtojson().fromFile(__dirname +`/${pathToFile}`).then(source => {
+    csvtojson().fromFile( __dirname + `/uploads/${pathToFile}`).then(source => {
+        
   
         // Fetching the data from each row 
         // and inserting to the table "sample"
@@ -69,32 +79,41 @@ function tranferCSV(pathToFile) {
                 console.log("Add vehicles successfully");
             });
 
+
             //!add vehicle for personal owners
             if (isCompany == 0) {
-                //!owner table
-                var insertOwners = "INSERT INTO `owner` (`ownerId`,`dob`, `name`, `address`, `phone`) VALUES (?)";
-                var ownerItems = [ownerId, dob, name, address, phone];
-               
-                db.query( insertOwners, [ownerItems], 
-                    (err, results, fields) => {
-                    if (err) {
-                        console.log("Unable to insert users item at row ", i + 1);
-                        return console.log(err);
+                let existedOwner = 0;
+                const q = "SELECT * FROM owner WHERE ownerId = ?"
+                db.query(q, ownerId, (err, data) => {
+                    if (data.length){
+                        return console.log("Owner at row ", i + 1, " already existed");
+                        existedOwner = 1;
                     }
-                    console.log("Add owners successfully");
                 });
-                //!ownervehicle table
-                var insertOwnerVehivle = "INSERT INTO `ownervehicle` (`ownerId`,`licensePlate`, `startDate`) VALUES (?)";
-                var ownerVehicleItems = [ownerId, licensePlate, startDate];
+                    //!owner table
+                        var insertOwners = "INSERT INTO `owner` (`ownerId`,`dob`, `name`, `address`, `phone`) VALUES (?)";
+                        var ownerItems = [ownerId, dob, name, address, phone];
+                    
+                        db.query( insertOwners, [ownerItems], 
+                            (err, results, fields) => {
+                            if (err) {
+                                console.log("Unable to insert users item at row ", i + 1);
+                                return console.log(err);
+                            }
+                            console.log("Add owners successfully");
+                        });
+                        //!ownervehicle table
+                        var insertOwnerVehivle = "INSERT INTO `ownervehicle` (`ownerId`,`licensePlate`) VALUES (?)";
+                        var ownerVehicleItems = [ownerId, licensePlate];
 
-                db.query( insertOwnerVehivle, [ownerVehicleItems], 
-                    (err, results, fields) => {
-                    if (err) {
-                        console.log("Unable to insert users item at row ", i + 1);
-                        return console.log(err);
-                    }
-                    console.log("Add ownervehicles successfully");
-                });
+                    db.query( insertOwnerVehivle, [ownerVehicleItems], 
+                        (err, results, fields) => {
+                        if (err) {
+                            console.log("Unable to insert users item at row ", i + 1);
+                            return console.log(err);
+                        }
+                        console.log("Add ownervehicles successfully");
+                    });
             } 
             //!add vehicle for company owners
             else if (isCompany == 1) {
@@ -111,8 +130,8 @@ function tranferCSV(pathToFile) {
                     console.log("Add company successfully");
                 });
                 //!companyvehicle table
-                var insertCompanyVehivle = "INSERT INTO `companyvehicle` (`ownerId`,`licensePlate`, `startDate`) VALUES (?)";
-                var companyVehicleItems = [ownerId, licensePlate, startDate];
+                var insertCompanyVehivle = "INSERT INTO `companyvehicle` (`ownerId`,`licensePlate`) VALUES (?)";
+                var companyVehicleItems = [ownerId, licensePlate];
 
                 db.query( insertCompanyVehivle, [companyVehicleItems], 
                     (err, results, fields) => {
@@ -129,3 +148,5 @@ function tranferCSV(pathToFile) {
         console.log("All items stored into database successfully");
     });
 }
+
+export default router

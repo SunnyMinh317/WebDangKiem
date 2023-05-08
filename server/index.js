@@ -4,6 +4,8 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import centreRoutes from "./routes/centreRoutes.js"
 import vehicleRoutes from "./routes/vehicleRoutes.js"
+import deptRoutes from "./routes/deptRoutes.js"
+import importCSV from "./controller/Department/importCSV.js"
 // import cookiesParser from "cookie-parser"
 
 const PORT = process.env.PORT || 8800;
@@ -18,6 +20,8 @@ app.use(bodyParser.json())
 
 app.use("/centre", centreRoutes)
 app.use("/vehicle", vehicleRoutes)
+app.use("/dept", deptRoutes )
+app.use("/csv", importCSV)
 
 
 app.get("/ownervehicles", function (req, res) {
