@@ -1,5 +1,5 @@
 import express from "express"
-import { getAllVehicle } from "../controller/vehicleControl.js";
+import { getAllVehicle } from "../controller/Vehicle/vehicleControl.js";
 import db from "../db.js";
 
 
