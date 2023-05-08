@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderCenter from "../../components/HeaderCenter";
-import AccountGenForm from "../../components/AccountGenForm";
+import AddCarForm from "../../components/AddCarForm";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 
 const AddCar = () => {
@@ -8,7 +8,7 @@ const AddCar = () => {
         <div className={MainLayoutCSS.container}>
             <HeaderCenter className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
-                <AccountGenForm/>
+                <AddCarForm/>
             </div>
         </div>
     )
