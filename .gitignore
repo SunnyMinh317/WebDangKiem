@@ -1,9 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
+backend/package.json
+yarn.lock
 /.pnp
 .pnp.js
+package_lock.json
+package.json
 
 # testing
 /coverage
@@ -21,3 +25,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.gitignore
+package-lock.json
+
+# database config
+db.js
