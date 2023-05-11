@@ -4,6 +4,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import centreRoutes from "./routes/centreRoutes.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";
+import deptRoutes from "./routes/deptRoutes.js";
+import importCSV from "./controller/Department/importCSV.js"
+
 // import cookiesParser from "cookie-parser"
 
 const PORT = process.env.PORT || 8800;
