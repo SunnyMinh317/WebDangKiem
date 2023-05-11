@@ -8,7 +8,7 @@ const DSTrungTam = () => {
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
-                <Table title="DANH SÁCH TRUNG TÂM" dataLink="./MOCK_DATA.json"/>
+                <Table title="DANH SÁCH TRUNG TÂM" dataLink="/centre/getAllCentres"/>
             </div>
         </div>
     )
