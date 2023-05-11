@@ -6,31 +6,7 @@ import { ColumnCenterCarList } from "./ColumnCenterCarList";
 import axios from "axios";
 
 const DSXe = () => {
-    
-    const [backendData, setBackendData] = useState([]);
-
-    // useEffect(() => {
-    //     fetch("/ownervehicles")
-    //       .then((respone) => respone.json())
-    //       .then((data) => {
-    //         setBackendData(data)
-    //       });
-    //   }, []);
-
-      
-      useEffect(()=>{
-        const getAllVehicle = async ()=>{
-            try {
-                const respond = await axios.get("/vehicle/getAllVehicle")
-                setBackendData(respond.data)
-                // console.log(backendData);
-            } catch(err) {
-                console.log(err)
-            }
-        }
-        getAllVehicle()
-    }, [])
-    
+       
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header}/>
