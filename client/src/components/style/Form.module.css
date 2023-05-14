@@ -10,13 +10,12 @@
 .formContainer {
     max-width: 80%;
     padding: 20px 10px;
-    background-color: #2C3333!important;
+    background-color: var(--white) !important;
     border-radius: 10px;
 }
 
 .container * {
-    font-family: titi!important;
-    color: #fff5ee!important;
+    font-family: titi !important;
 }
 
 .textField:focus {
@@ -24,8 +23,8 @@
 }
 
 .title {
-    font-family: noodle!important;
-    color: #1ac4c9!important;
+    font-family: noodle !important;
+    color: var(--dark) !important;
     font-weight: bolder;
 }
 
@@ -63,5 +62,14 @@ input {
 }
 
 .ButtonIcon {
-    margin-left: 10px;
+    margin-bottom: 8px;
+    font-size: smaller;
+}
+
+.fileUploadBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    
 }
