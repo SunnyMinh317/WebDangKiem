@@ -8,7 +8,7 @@ const CenterDSXe = () => {
         <div className={MainLayoutCSS.container}>
             <HeaderCenter className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
-                <Table title="DANH SÁCH XE" dataLink="/vehicle/getAllVehicle"/>
+                <Table externalButtons={true} title="DANH SÁCH XE" dataLink="/vehicle/getAllVehicle" columnSet={ColumnCenterCarList}/>
             </div>
         </div>
     )
