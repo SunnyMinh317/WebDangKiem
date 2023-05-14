@@ -6,36 +6,13 @@ import {
     Button,
     Typography,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useState } from "react";
 import FormCSS from "./style/Form.module.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#0E8388", // your custom primary color
-        },
-        secondary: {
-            main: "#2E4F4F", // your custom secondary color
-        },
-    },
-    components: {
-        MuiTextField: {
-            styleOverrides: {
-                root: {
-                    "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#fff5ee",
-                    },
-                    "& .MuiOutlinedInput-root.Mui-focused": {
-                        backgroundColor: "transparent",
-                    },
-                },
-            },
-        },
-    },
-});
+
 
 const AccountGenForm = () => {
     const[inputs, setInputs] = useState ({
@@ -71,7 +48,6 @@ const AccountGenForm = () => {
 
         return (
         <div className={FormCSS.container}>
-            <ThemeProvider theme={theme}>
                 <Card className={FormCSS.formContainer}>
                     <CardContent>
                         <Typography
@@ -87,7 +63,7 @@ const AccountGenForm = () => {
                         </Typography>
                         <Grid container spacing={1}>
                             <Grid xs={12} sm={6} item>
-                                <TextField
+                                <StyledTextField
                                     className={FormCSS.textField}
                                     label="Thành phố"
                                     name="city"
@@ -97,7 +73,7 @@ const AccountGenForm = () => {
                                 />
                             </Grid>
                             <Grid xs={12} sm={6} item>
-                                <TextField
+                                <StyledTextField
                                     className={FormCSS.textField}
                                     label="Quận/huyện/thị xã"
                                     name="district"
@@ -108,7 +84,7 @@ const AccountGenForm = () => {
                             </Grid>
 
                             <Grid xs={12} item>
-                                <TextField
+                                <StyledTextField
                                     className={FormCSS.textField}
                                     label="Tên trung tâm"
                                     name="name"
@@ -119,7 +95,7 @@ const AccountGenForm = () => {
                             </Grid>
 
                             <Grid xs={12}  item>
-                                <TextField
+                                <StyledTextField
                                     className={FormCSS.textField}
                                     type="email"
                                     label="Email"
@@ -130,7 +106,7 @@ const AccountGenForm = () => {
                                 />
                             </Grid>
                             <Grid xs={12}  item>
-                                <TextField
+                                <StyledTextField
                                     className={FormCSS.textField}
                                     label="Mật khẩu mặc định"
                                     name="password"
@@ -140,14 +116,13 @@ const AccountGenForm = () => {
                                 />
                             </Grid>
                             <Grid xs={12} item>
-                                <Button variant="contained" fullWidth onClick={handleSubmit} >
+                                <StyledButton variant="contained" fullWidth onClick={handleSubmit} >
                                     Cấp tài khoản
-                                </Button>
+                                </StyledButton>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
-            </ThemeProvider>
         </div>
     );
 };

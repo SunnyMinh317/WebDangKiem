@@ -1,3 +1,0 @@
----Database---
-centrePassword -> varchar(100)
-centreId -> int(10) -> auto increase
