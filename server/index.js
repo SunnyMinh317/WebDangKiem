@@ -5,7 +5,8 @@ import bodyParser from "body-parser";
 import centreRoutes from "./routes/centreRoutes.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";
 import deptRoutes from "./routes/deptRoutes.js";
-import importCSV from "./controller/Department/importCSV.js"
+import importCSV from "./controller/Department/importCSV.js";
+import cookieParser from "cookie-parser";
 
 // import cookiesParser from "cookie-parser"
 
@@ -17,7 +18,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cookiesParser)
+app.use(cookieParser());
+
 
 app.use("/centre", centreRoutes);
 app.use("/vehicle", vehicleRoutes);
