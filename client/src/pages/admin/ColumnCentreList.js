@@ -1,18 +1,24 @@
-import { ColumnFilter } from "../../components/tables/ColumnFilter";
-
 export const ColumnCenterList = [
     {
-        Header: "Tên trung tâm",
-        accessor: "centreName",
-        Filter: ColumnFilter,
+        headerName: 'Tên trung tâm',
+        field: 'centreName',
+        align: 'left',
+        headerAlign: 'left',
+        flex:1,
     },
     {
-        Header: "Địa chỉ",
-        accessor: "centreCity",
-        Filter: ColumnFilter,
-    },{
-        Header: "Ngày thành lập",
-        accessor: "establishedDate",
-        Filter: ColumnFilter,
+        headerName: 'Địa chỉ',
+        field: 'centreCity',
+        align: 'left',
+        headerAlign:'left',
+        flex:1,
     },
+    {
+        headerName: 'Ngày thành lập',
+        field: 'establishedDate',
+        align: 'left',
+        headerAlign:'left',
+        flex:1,
+    }
 ];
+
