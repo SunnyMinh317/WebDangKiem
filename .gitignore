@@ -27,5 +27,3 @@ yarn-error.log*
 
 # database config
 *.json
-*.otf
-*.otf
