@@ -1,6 +1,8 @@
 import express from "express"
 import importCSV from "../controller/Department/importCSV.js";
 import db from "../db.js";
+import { getNewReg } from "../controller/Department/getNewReg.js";
+import { getOldReg } from "../controller/Department/getOldReg.js";
 
 const router = express.Router();
 
@@ -12,6 +14,9 @@ const router = express.Router();
 router.post("/test", (req, res) => {
     return res.json('test dept import CSV')
 })
+
+router.get("/getNewReg", getNewReg)
+router.get("/getOldReg", getOldReg)
 
 
 export default router
