@@ -8,7 +8,7 @@ import DSTrungTam from './pages/admin/DSTrungTam';
 import CapTaiKhoan from './pages/admin/CapTaiKhoan';
 import CenterDSXe from './pages/center/CenterDSXe';
 import AddCar from './pages/center/AddCar';
-
+import Dashboard from './pages/prediction/Dashboard';
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
         <Route path='/captaikhoan' element={<CapTaiKhoan/>}/>
         <Route path='/dsxetrungtam' element={<CenterDSXe/>}/>
         <Route path='/themxe' element={<AddCar/>}/>
+        <Route path='/dubao' element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
   )
