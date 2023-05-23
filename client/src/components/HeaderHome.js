@@ -2,7 +2,7 @@ import React from "react";
 import HeaderCSS from "./style/Header.module.css"
 import { Link } from "react-router-dom";
 
-const HeaderAdmin = () => {
+const HeaderHome = () => {
     return (
         <header className={HeaderCSS.container}>
             <div className={HeaderCSS.logo}>
@@ -22,4 +22,4 @@ const HeaderAdmin = () => {
     )
 }
 
-export default HeaderAdmin;
+export default HeaderHome;

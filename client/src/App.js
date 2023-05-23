@@ -8,6 +8,7 @@ import DSTrungTam from './pages/admin/DSTrungTam';
 import CapTaiKhoan from './pages/admin/CapTaiKhoan';
 import CenterDSXe from './pages/center/CenterDSXe';
 import AddCar from './pages/center/AddCar';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (

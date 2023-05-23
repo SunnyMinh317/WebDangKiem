@@ -15,27 +15,33 @@
     display: flex;   
     justify-content: space-between;
     background-color: var(--dark);
-    padding: 15px 3vw;
+    padding: 18px 20px;
     box-shadow: 0px 1.5px 8px #060606;
 }
 
 .logo {
     display: flex;
+    margin-top: -4px;
+    margin-left: 2vw;
 }
 
 .logo i {
-    padding-top: 0.3vw;
-    margin-right: 1vw;
+    padding-top: 4px;
+    margin-right: 10px;
     color: var(--logo);
+    font-size: larger;
 }
 
 .logo a {
     color:var(--white); 
+    font-size: larger;
+    color: var(--logo);
 }
 
 ul {
     display: flex;
     list-style-type: none;
+    justify-content: center;
 }
 
 a {

@@ -8,7 +8,7 @@ const PopUp = ({ isOpen, closeModal, data, columns }) => {
         return null;
     }
 
-    console.log(data);
+    // console.log(data);
 
     return (
         <div className={PopUpCSS.container}>
@@ -23,11 +23,12 @@ const PopUp = ({ isOpen, closeModal, data, columns }) => {
                 </div>
 
                 {columns.map((column) => {
-                    console.log(column.ownerId);
+                    console.log(data.ownerId);
                     return (
-                        <p key={column.ownerId}>{`${column.Header}: ${
-                            data.column
-                        }`}</p>
+                        <div key={data.ownerId} className={PopUpCSS.infoLine}>
+                            <div>{column.headerName}: </div>
+                            <div className={PopUpCSS.infoContent}>{data[column.field]}</div>
+                        </div>
                     );
                 })}
             </div>
@@ -36,3 +37,6 @@ const PopUp = ({ isOpen, closeModal, data, columns }) => {
 };
 
 export default PopUp;
+// {`${column.headerName}: ${
+//     data[column.field]
+// }`}

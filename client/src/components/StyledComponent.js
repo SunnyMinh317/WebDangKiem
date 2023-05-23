@@ -30,31 +30,33 @@ export const StyledButton = styled(Button)({
     borderRadius: "10",
     fontWeight: "bold",
 });
-
+const ROW_HEIGHT = 45;
+const ROW_MARGIN = 10;
+const containerHeight = (9 + 1) * (ROW_HEIGHT + ROW_MARGIN);
 export const StyledDataGrid = styled(DataGrid)({
-    height: "100%",
     width: "100%",
-
+    height: "200%",
     "& .MuiDataGrid-columnHeader": {
-        backgroundColor: "transparent",
-        color: "var(--black)",
-        marginBottom: "5px",
+        backgroundColor: "var(--dark)",
+        color: "var(--white)",
+        flex: "0 0 200px",
     },
 
     "& .MuiDataGrid-columnHeaderTitle": {
-        fontWeight: "bold",
+        fontWeight: "900",
     },
 
-    "& .MuiDataGrid-columnFooter": {
-        backgroundColor: "var(--sec-dark)",
+    "& .MuiDataGrid-footerContainer": {
+        backgroundColor: "var(--dark)",
+        color: "var(--white)",
+    },
+
+    "& .MuiDataGrid-footerContainer *": {
         color: "var(--white)",
     },
 
     "& .MuiDataGrid-row": {
         backgroundColor: "var(--white)",
-
-        marginBottom: "5px",
-
         "&:hover": {
             backgroundColor: "var(--table-grey)",
             color: "var(--black)",
@@ -69,16 +71,17 @@ export const StyledDataGrid = styled(DataGrid)({
             color: "var(--white)",
         },
     },
+
+    "& .MuiDataGrid-viewport": {
+        maxHeight: "unset !important",
+    },
+
+    "& .MuiDataGrid-renderingZone": {
+        maxHeight: "670px !important", // <= manually setting the max height, but this is not responsive
+    },
+
     border: "0px solid transparent",
     fontSize: "0.7rem",
-
+    fontWeight: "600",
     fontFamily: "titi",
-
-    "@media (max-width: 600px)": {
-        "& .MuiDataGrid-row": {
-            
-            whiteSpace: "nowrap",
-        },
-    },
-      
 });
