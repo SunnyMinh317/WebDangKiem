@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: var(--fourth-dark);
+    background-color: var(--background);
     overflow-y: hidden;
 }
 
@@ -10,3 +10,77 @@ header {
     z-index: 2;
 }
 
+.graphContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    background-color: var(--white);
+    box-shadow: 0px 0px 5px black;
+    padding-top: 30px;
+}
+
+.centerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.moreContainer {
+    width: 100%;
+}
+
+.contentWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profilePic {
+    width: 250px;
+    height: 250px;
+    margin-right: 40px;
+}
+
+.profileContainer {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 50px;
+}
+
+.profileTitle {
+    font-family: noodle;
+    font-size: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profileInfo * {
+    font-family: titi;
+}
+
+.profileInfoHeader {
+    font-weight: 900;
+    width: 100px;
+    float: left;
+}
+
+.profileInfoContent {
+    margin-left: 20px;
+    /* border: 1px solid black; */
+    padding: 7px 60px;
+    border-radius: 3px;
+    background-color: grey;
+    color: var(--white)
+}
+
+.profileInfoLines {
+    margin-bottom: 25px;
+    margin-top: 25px;
+}

@@ -26,8 +26,8 @@ const PopUp = ({ isOpen, closeModal, data, columns }) => {
                     console.log(data.ownerId);
                     return (
                         <div key={data.ownerId} className={PopUpCSS.infoLine}>
-                            <div>{column.headerName}: </div>
-                            <div className={PopUpCSS.infoContent}>{data[column.field]}</div>
+                            <span className={PopUpCSS.infoHeader}>{column.headerName}: </span>
+                            <span className={PopUpCSS.infoContent}>{data[column.field]}</span>
                         </div>
                     );
                 })}

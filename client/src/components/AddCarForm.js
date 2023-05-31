@@ -52,6 +52,28 @@ const AddCarForm = () => {
         console.log(selectedFile);
     };
 
+    const autoFormatDate = (event) => {
+        const inputValue = event.target.value;
+        const sanitizedValue = inputValue.replace(/\D/g, ""); // Remove non-numeric characters
+        let formattedValue = sanitizedValue;
+
+        if (sanitizedValue.length >= 4) {
+            formattedValue =
+                sanitizedValue.slice(0, 4) + "/" + sanitizedValue.slice(4);
+        }
+
+        if (sanitizedValue.length >= 6) {
+            formattedValue =
+                sanitizedValue.slice(0, 4) +
+                "/" +
+                sanitizedValue.slice(4, 6) +
+                "/" +
+                sanitizedValue.slice(6, 8);
+        }
+
+        event.target.value = formattedValue;
+    };
+
     return (
         <div className={FormCSS.container}>
             <Card className={FormCSS.formContainer}>
@@ -106,7 +128,11 @@ const AddCarForm = () => {
                                                     <StyledTextField
                                                         required
                                                         label="Ngày sinh (yyyy/mm/dd)"
+                                                        className={
+                                                            FormCSS.textField
+                                                        }
                                                         fullWidth
+                                                        onChange={autoFormatDate}
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12}>
@@ -144,14 +170,16 @@ const AddCarForm = () => {
                                                     <StyledTextField
                                                         required
                                                         label="Họ và tên đại diện"
-                                                        fullWidth
+                                                        fullWidths
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12}>
                                                     <StyledTextField
                                                         required
                                                         label="Ngày thành lập (yyyy/mm/dd)"
+                                                        className={FormCSS.textField}
                                                         fullWidth
+                                                        onChange={autoFormatDate}
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12}>
@@ -215,6 +243,7 @@ const AddCarForm = () => {
                                         label="Ngày sản xuất (yyyy/mm/dd)"
                                         fullWidth
                                         required
+                                        onChange={autoFormatDate}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>

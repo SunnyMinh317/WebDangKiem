@@ -12,9 +12,9 @@ const DSXe = () => {
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
-                {!currentUser ? (
+                {/* {!currentUser ? (
                     <div>DIT CU DANG NHAP</div>
-                ) : (
+                ) : ( */}
                     <Table
                         externalButtons={false}
                         title="DANH SÁCH XE"
@@ -22,7 +22,7 @@ const DSXe = () => {
                         columnSet={ColumnCarList}
                         rowID="licensePlate"
                     />
-                )}
+                {/* )} */}
             </div>
         </div>
     );

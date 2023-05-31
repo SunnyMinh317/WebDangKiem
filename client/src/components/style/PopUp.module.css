@@ -58,15 +58,21 @@
 
 .infoLine {
     display: flex;
-    margin-bottom: 5px;
-    justify-content: space-between;
+    margin-bottom: 7px;
+    /* justify-content: space-between; */
 }
 
-.infoContent {
+/* .infoContent {
     margin-left: 5px;
     text-align: left;
 }
 
 .headerName {
     text-align: right;
+} */
+
+.infoHeader {
+    width: 155px;
+    float: left;
+    font-weight: 900;
 }

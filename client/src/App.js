@@ -10,6 +10,7 @@ import CenterDSXe from './pages/center/CenterDSXe';
 import AddCar from './pages/center/AddCar';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/prediction/Dashboard';
+import Profile from './pages/center/Profile';
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/dsxetrungtam' element={<CenterDSXe/>}/>
         <Route path='/themxe' element={<AddCar/>}/>
         <Route path='/dubao' element={<Dashboard/>}/>
+        <Route path='/profile' element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   )

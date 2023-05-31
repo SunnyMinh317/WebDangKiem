@@ -61,6 +61,7 @@ const LoginForm = () => {
                     >
                         ĐĂNG NHẬP
                     </Typography>
+                    {err && <div className={FormCSS.errorBox}>Tài khoản hoặc mật khẩu không đúng</div>}
                     <Grid container spacing={1}>
                         <Grid xs={12} item>
                             <StyledTextField
@@ -104,9 +105,6 @@ const LoginForm = () => {
                                 }}
                                 fullWidth
                             />
-                            {/* <div onClick={handleShowPassword}>
-                                    
-                                </div> */}
                         </Grid>
 
                         <Grid xs={12} item>
@@ -130,7 +128,6 @@ const LoginForm = () => {
                                 </div>
                             </div>
                         </Grid>
-                        {err && <p>{err}</p>}
                     </Grid>
                 </CardContent>
             </Card>

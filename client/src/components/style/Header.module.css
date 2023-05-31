@@ -12,7 +12,7 @@
 .container {
     color: var(--white);
     font-family: noodle;
-    display: flex;   
+    display: flex;
     justify-content: space-between;
     background-color: var(--dark);
     padding: 18px 20px;
@@ -26,14 +26,14 @@
 }
 
 .logo i {
-    padding-top: 4px;
+    padding-top: 7px;
     margin-right: 10px;
     color: var(--logo);
     font-size: larger;
 }
 
 .logo a {
-    color:var(--white); 
+    color: var(--white);
     font-size: larger;
     color: var(--logo);
 }
@@ -50,4 +50,42 @@ a {
 
 li {
     padding: 0vw 1.2vw;
+}
+
+.profilePic {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    /* border: 2px solid rgba(0, 0, 0, 0.289) */
+}
+.dropDownContent {
+    display: none;
+    position: absolute;
+    background-color: var(--sec-dark);
+    min-width: 100px;
+    margin-left: -70px;
+    /* margin-top: 20px; */
+}
+.li {
+    transition: 0.3s;
+}
+.li:hover {
+    color: rgb(203, 208, 255);
+}
+
+.dropDown:hover .dropDownContent {
+    display: block;
+}
+
+.profilePic:hover {
+    cursor: pointer;
+}
+
+.dropDownItem {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.dropDownContent li:hover {
+    background-color: var(--darker);
 }
