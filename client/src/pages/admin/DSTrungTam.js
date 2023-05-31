@@ -4,6 +4,7 @@ import MainLayoutCSS from "../style/MainLayout.module.css";
 import Table from "../../components/tables/Table";
 import { ColumnCenter } from "../../components/Columns";
 import axios from "axios";
+import { ColumnCenterList } from "./ColumnCentreList";
 
 const DSTrungTam = () => {
     const [backendData, setBackendData] = useState([]);
@@ -11,7 +12,7 @@ const DSTrungTam = () => {
     useEffect(() => {
         const getAllVehicle = async () => {
             try {
-                const respond = await axios.get("/data");
+                const respond = await axios.get("/centre/getAllCentres");
                 setBackendData(respond.data);
                 // console.log(backendData);
             } catch (err) {
@@ -28,7 +29,7 @@ const DSTrungTam = () => {
                 <Table
                     externalButtons={true}
                     title="DANH SÁCH TRUNG TÂM"
-                    dataLink="/data"
+                    dataLink="/centre/getAllCentres"
                     columnSet={ColumnCenter}
                     rowID="centreID"
                 />

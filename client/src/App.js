@@ -9,18 +9,19 @@ import CapTaiKhoan from './pages/admin/CapTaiKhoan';
 import CenterDSXe from './pages/center/CenterDSXe';
 import AddCar from './pages/center/AddCar';
 import HomePage from './pages/HomePage';
-
+import Dashboard from './pages/prediction/Dashboard';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Login/>}/>
+        <Route index element={<HomePage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/danhsachxe' element={<DSXe/>}/>
         <Route path='/danhsachtrungtam' element={<DSTrungTam/>}/>
         <Route path='/captaikhoan' element={<CapTaiKhoan/>}/>
         <Route path='/dsxetrungtam' element={<CenterDSXe/>}/>
         <Route path='/themxe' element={<AddCar/>}/>
+        <Route path='/dubao' element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
   )
