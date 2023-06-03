@@ -11,10 +11,13 @@ import { Icon } from "@mui/material";
 import { ExportButton } from "../ExportButton";
 import { DetailColumn } from "./DetailColumn";
 import { DataGrid } from "@mui/x-data-grid";
+import { useNavigate } from "react-router-dom";
 
 const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
     const columns = useMemo(() => columnSet, []);
     const [data, setData] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -70,7 +73,7 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
             <div className={TableCSS.title}>{title}</div>
             <div className={TableCSS.externalBtn}>
                 {externalButtons && (
-                    <StyledButton
+                    <StyledButton onClick={() => {navigate("/");}}
                         variant="contained"
                         endIcon={
                             <Icon>
@@ -92,7 +95,7 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
                     <StyledDataGrid
                         rows={data}
                         columns={newCols}
-                        pagination={false}
+                        // pagination={false}
                         getRowId={getRowId}
                         autoHeight={true}
                         disableRowSelectionOnClick

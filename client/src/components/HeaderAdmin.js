@@ -4,18 +4,19 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
 const HeaderAdmin = () => {
-    const { currentUser, logout, login } = useContext(AuthContext);
+    const { currentUser, logout } = useContext(AuthContext);
 
     const pic = document.getElementById("profilePic");
     console.log(pic);
+
     return (
         <header className={HeaderCSS.container}>
             <div className={HeaderCSS.logo}>
                 <i class="fa-solid fa-bus"></i>
-                <a>RegistryTotal</a>
+                <Link className={HeaderCSS.li} to="/adminHome">RegistryTotal CỤC</Link>
             </div>
             <nav>
-                {/* {currentUser ? ( */}
+                {currentUser ? (
                 <ul id="menu">
                     <li id="index">
                         <Link
@@ -33,11 +34,6 @@ const HeaderAdmin = () => {
                     <li id="field">
                         <Link className={HeaderCSS.li} to="/captaikhoan">
                             CẤP TÀI KHOẢN
-                        </Link>
-                    </li>
-                    <li id="field">
-                        <Link className={HeaderCSS.li} to="/themxe">
-                            THÊM XE
                         </Link>
                     </li>
                     <li id="profile">
@@ -63,7 +59,7 @@ const HeaderAdmin = () => {
                                 <li className={HeaderCSS.dropDownItem}>
                                     <Link
                                         className={HeaderCSS.li}
-                                        to="/logout"
+                                        to="/login"
                                         onClick={logout}
                                     >
                                         ĐĂNG XUẤT
@@ -73,15 +69,15 @@ const HeaderAdmin = () => {
                         </div>
                     </li>
                 </ul>
-                {/* // ) : (
-                //     <ul id="menu">
-                //         <li id="logout">
-                //             <Link className={HeaderCSS.li} to="/login" onClick={logout}>
-                //                 ĐĂNG NHẬP ĐI EM YÊU
-                //             </Link>
-                //         </li>
-                //     </ul>
-                // )}  */}
+                ) : (
+                    <ul id="menu">
+                        <li id="logout">
+                            <Link className={HeaderCSS.li} to="/login" onClick={logout}>
+                                ĐĂNG NHẬP ĐỂ BẮT ĐẦU CỤC 
+                            </Link>
+                        </li>
+                    </ul>
+                )} 
             </nav>
         </header>
     );

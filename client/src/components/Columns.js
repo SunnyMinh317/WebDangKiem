@@ -134,7 +134,7 @@ export const ColumnCenterCarList = [
     },
     {
         headerName: "NGÀY HẾT HẠN",
-        field: "registrationDate",
+        field: "expireDate",
         align: "left",
         headerAlign: "left",
         width: "190",
