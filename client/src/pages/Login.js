@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Login = () => {
     return (
         <div className={LoginCSS.container}>
-            <div className={LoginCSS.imgContainer}>
+            {/* <div className={LoginCSS.imgContainer}>
                 <img className={LoginCSS.img} src={loginPageImg} />
-            </div>
+            </div> */}
             <div className={LoginCSS.contentContainer}>
                 <div className={LoginCSS.titleContainer}>
                     <h1>
