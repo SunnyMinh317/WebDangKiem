@@ -32,14 +32,14 @@ export const StyledButton = styled(Button)({
 });
 const ROW_HEIGHT = 45;
 const ROW_MARGIN = 10;
-const containerHeight = (9 + 1) * (ROW_HEIGHT + ROW_MARGIN);
 export const StyledDataGrid = styled(DataGrid)({
     width: "100%",
+    // minWidth: "600px",
     height: "200%",
     "& .MuiDataGrid-columnHeader": {
         backgroundColor: "var(--dark)",
         color: "var(--white)",
-        flex: "0 0 200px",
+        // flex: "0 0 200px",
     },
 
     "& .MuiDataGrid-columnHeaderTitle": {
@@ -70,14 +70,6 @@ export const StyledDataGrid = styled(DataGrid)({
             backgroundColor: "var(--dark-orange)",
             color: "var(--white)",
         },
-    },
-
-    "& .MuiDataGrid-viewport": {
-        maxHeight: "unset !important",
-    },
-
-    "& .MuiDataGrid-renderingZone": {
-        maxHeight: "670px !important", // <= manually setting the max height, but this is not responsive
     },
 
     border: "0px solid transparent",
