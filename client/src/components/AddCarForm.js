@@ -25,6 +25,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
 
 const AddCarForm = () => {
+    const getData = () => {
+        console.log("getData")
+    }
     return (
         <div className={FormCSS.container}>
             <Card className={FormCSS.formContainer}>
@@ -47,7 +50,7 @@ const AddCarForm = () => {
                             />
                         </Grid>
                         <Grid item xs={6} sm={12}>
-                            <StyledButton ></StyledButton>
+                            <StyledButton onClick={getData}>LẤY THÔNG TIN</StyledButton>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             {" "}
