@@ -23,10 +23,25 @@ import FormCSS from "./style/Form.module.css";
 import { faUpload, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
+import axios from 'axios';
 
 const AddCarForm = () => {
+    const [licensePlate, setLicensePlate] = useState('');
+
+    const handleLicensePlateChange = (event) => {
+        setLicensePlate(event.target.value);
+      };
+
     const getData = () => {
-        console.log("getData")
+        axios.post('/postAddCarForm', {
+            licensePlate: licensePlate
+          })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          });
     }
     return (
         <div className={FormCSS.container}>
@@ -47,6 +62,7 @@ const AddCarForm = () => {
                                 id="outlined-read-only-input"
                                 label="Biển số"
                                 defaultValue={"Filler Data Filler Filler"}
+                                onChange={handleLicensePlateChange}
                             />
                         </Grid>
                         <Grid item xs={6} sm={12}>
