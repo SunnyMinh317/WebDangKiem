@@ -1,6 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --white: #eaeaea;
+  --logo: #c7d7ff;
+  --dark-border: #2b3a61;;
+  --dark: #334572;
+  --darker:#212d49; 
+  --sec-dark: #4663ac;
+  --third-dark: #e1f1fd;
+  --fourth-dark: 	#e4f0ff;
+  --table-grey: rgb(235, 235, 235);
+  --black: #293241;
+  --orange: #EE6C4D;
+  --dark-orange: #dd6b4e;
+  --background: rgb(231, 231, 231);
 }
 
 @font-face {
@@ -10,7 +30,7 @@
 
 @font-face {
   font-family: titi;
-  src: url(./fonts/SVN-Titillium\ medium.ttf);
+  src: url(./fonts/Montserrat-Regular.otf);
 }
 
 body {

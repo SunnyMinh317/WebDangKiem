@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { React, useContext } from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 import Table from "../../components/tables/Table";
-import { ColumnCenterCarList } from "./ColumnCenterCarList";
-import axios from "axios";
+import { ColumnCarList } from "../../components/Columns";
+import { AuthContext } from "../../context/authContext";
 
 const DSXe = () => {
-       
+    const { currentUser } = useContext(AuthContext);
     return (
         <div className={MainLayoutCSS.container}>
-            <HeaderAdmin className={MainLayoutCSS.header}/>
+            <HeaderAdmin className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
-                <Table title="DANH SÁCH XE" dataLink="/vehicle/getAllVehicle" columnSet={ColumnCenterCarList}/>
+                {!currentUser ? (
+                    <div>DIT CU DANG NHAP</div>
+                ) : (
+                    <Table
+                        externalButtons={false}
+                        title="DANH SÁCH XE"
+                        dataLink="/vehicle/getAllVehicle"
+                        columnSet={ColumnCarList}
+                        rowID="licensePlate"
+                    />
+                )}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default DSXe;

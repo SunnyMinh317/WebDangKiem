@@ -1,0 +1,10 @@
+.container {
+    width: 100%;
+}
+
+.title {
+    font-family: noodle;
+    font-size: 1.5rem;
+    margin-left: 3rem;
+    margin-bottom: 6rem;
+}

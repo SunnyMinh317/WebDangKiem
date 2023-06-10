@@ -11,12 +11,19 @@
     justify-content: center;
     align-items: center;
     display: flex;
+    font-family: titi;
+    font-size: smaller;
+}
+
+.container * {
+    font-family: titi;
 }
 
 .content {
-    border-radius: 15px;
-    width: 30vw;
-    background-color: #fff5ee;
+    width: 30%;
+    border-radius: 5px;
+    min-width: 450px;
+    background-color: var(--white);
     box-shadow: 0px 0px 4px black;
     padding: 2rem;
 }
@@ -38,7 +45,7 @@
     align-items: center;
     padding: 0;
     border: none;
-    background-color: rgb(255, 122, 122);
+    background-color: rgb(248, 87, 87);
     box-shadow: 0px 0px 4px black;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -52,4 +59,33 @@
     box-shadow: 0px 0px 2px black;
     background-color: rgb(254, 63, 63);
     cursor: pointer;
+}
+
+.infoLine {
+    display: flex;
+    margin-bottom: 7px;
+    /* justify-content: space-between; */
+}
+
+/* .infoContent {
+    margin-left: 5px;
+    text-align: left;
+}
+
+.headerName {
+    text-align: right;
+} */
+
+.infoHeader {
+    width: 155px;
+    float: left;
+    font-weight: 900;
+}
+
+.tabList * {
+    font-family: titi;
+}
+
+.tabList {
+    color: red;
 }

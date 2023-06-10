@@ -4,38 +4,44 @@
 }
 
 .container * {
-    color: #CBE4DE;
+    color: var(--white);
     font-size: 1.2rem;
     z-index: 2;
 }
 
 .container {
-    color: white;
+    color: var(--white);
     font-family: noodle;
-    display: flex;   
+    display: flex;
     justify-content: space-between;
-    background-color: #2C3333;
-    padding: 15px 3vw;
+    background-color: var(--dark);
+    padding: 18px 20px;
     box-shadow: 0px 1.5px 8px #060606;
 }
 
 .logo {
     display: flex;
+    margin-top: -4px;
+    margin-left: 2vw;
 }
 
 .logo i {
-    padding-top: 0.3vw;
-    margin-right: 1vw;
-    color: #0E8388;
+    padding-top: 7px;
+    margin-right: 10px;
+    color: var(--logo);
+    font-size: larger;
 }
 
 .logo a {
-    color:#CBE4DE; 
+    color: var(--white);
+    font-size: larger;
+    color: var(--logo);
 }
 
 ul {
     display: flex;
     list-style-type: none;
+    justify-content: center;
 }
 
 a {
@@ -44,4 +50,107 @@ a {
 
 li {
     padding: 0vw 1.2vw;
+}
+
+.profilePic {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    /* border: 2px solid rgba(0, 0, 0, 0.289) */
+}
+.dropDownContent {
+    display: none;
+    position: absolute;
+    background-color: var(--sec-dark);
+    min-width: 100px;
+    margin-left: -70px;
+    /* margin-top: 20px; */
+}
+.li {
+    transition: 0.3s;
+}
+.li:hover {
+    color: rgb(203, 208, 255);
+}
+
+.dropDown:hover .dropDownContent {
+    display: block;
+}
+
+.profilePic:hover {
+    cursor: pointer;
+}
+
+.dropDownItem {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.dropDownContent li:hover {
+    background-color: var(--darker);
+}
+
+.burger {
+    display: none;
+}
+
+input .checkbox {
+    display: none;
+}
+
+.bars {
+    display: none;
+}
+
+.mobileProfile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 100%;
+    }
+    
+    .largeScreenNav {
+        display: block;
+        position: fixed;
+        background-color: var(--dark);
+        height: 150px;
+        box-shadow: 0px 0px 5px black;
+        right: 0;
+        flex-direction: column;
+        z-index: 1;
+        text-align: right;
+        top: 70px;
+        width: 25%;
+        right: -100%;
+        transition: 0.3s;
+        border-radius: 3px;
+    }
+
+    .largeScreenNav li {
+        margin-right: 5px;
+    }
+
+    .checkbox {
+        display: none;
+    }
+
+    .bars {
+        display: block;
+        cursor: pointer;;
+    }
+
+    .checkbox:checked ~ ul {
+        right: 0;
+    }
+
+    .mobileProfile {
+        display: block;
+    }
+
+    .largeScreenProfile {
+        display: none;
+    }
+    
 }

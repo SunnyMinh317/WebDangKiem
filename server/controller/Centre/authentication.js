@@ -1,5 +1,6 @@
 import db from "../../db.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 export const register = (req,res) =>{
     // CHECK EXISTING USER
@@ -41,10 +42,17 @@ export const login = (req, res) => {
     
     const {password, ...other} = data[0]
 
-    return res.status(200).json(other)
+    const token = jwt.sign({centreId: data[0].centreId}, "jwtkey")
+   
+    return res.cookie("access_token", token, {
+      httpOnly: true
+    }).status(200).json(other)
   })
 }
 
 export const logout = (req, res) => {
-    res.status(200).json("User has been logout")
+    res.clearCookie("access_token", {
+      sameSite: "none",
+      secure:true
+    }).status(200).json("Centre has been logout")
 }

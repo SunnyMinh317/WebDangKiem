@@ -6,15 +6,6 @@ import { getRegByMonth, getRegByMonthByCentre } from "../controller/Department/g
 
 const router = express.Router();
 
-// !Chuyển "import-csv" -> sang tên của form frontend
-// router.get("/import-csv", upload.single("import-csv"), (req, res) => {
-//     return res.json('test')
-// })
-
-router.post("/test", (req, res) => {
-    return res.json('test dept import CSV')
-})
-
 router.get("/getRegByMonth", getRegByMonth)
 router.get("/getRegByMonthByCentre", getRegByMonthByCentre)
 router.get("/getRegByYear", getRegByYear)
