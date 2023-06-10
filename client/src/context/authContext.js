@@ -12,6 +12,7 @@ export const AuthContexProvider = ({ children }) => {
     const res = await axios.post("/centre/login", inputs);
     setCurrentUser(res.data);
     console.log("Login successfully");
+    return res.data;
   };
 
   const logout = async (inputs) => {

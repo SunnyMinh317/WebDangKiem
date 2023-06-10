@@ -4,7 +4,7 @@ export const ColumnCarList = [
         field: "ownerId",
         align: "left",
         headerAlign: "left",
-        width: 150,
+        width: 100,
     },
     {
         headerName: "BIỂN SỐ",
@@ -32,7 +32,7 @@ export const ColumnCarList = [
         field: "centreName",
         align: "left",
         headerAlign: "left",
-        width: 225,
+        width: 275,
     },
     {
         headerName: "NGÀY ĐĂNG KIỂM",
@@ -134,7 +134,7 @@ export const ColumnCenterCarList = [
     },
     {
         headerName: "NGÀY HẾT HẠN",
-        field: "registrationDate",
+        field: "expireDate",
         align: "left",
         headerAlign: "left",
         width: "190",

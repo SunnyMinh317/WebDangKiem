@@ -24,7 +24,7 @@ const LoginForm = () => {
     });
     const [err, setError] = useState(null);
 
-    const { login } = useContext(AuthContext);
+    const { currentUser, login } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -38,12 +38,25 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(inputs);
-            navigate("/danhsachxe");
+           const loginData =  await login(inputs);
+            loginNavigate(loginData);
         } catch (err) {
             setError(err.response.data);
         }
     };
+
+    const loginNavigate = (loginData) => {
+        if (loginData) {
+            console.log(loginData.isAdmin);
+            if(loginData.isAdmin == 1){
+                navigate("/adminHome");
+            } else if(loginData.isAdmin == 0) {
+                navigate("/centreHome");
+            }
+        } else {
+            console.log("No user");
+        }
+    }
 
     //Phan them
     const [showPassword, setShowPassword] = useState(false);

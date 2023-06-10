@@ -1,9 +1,9 @@
 import React from "react";
 import bgImg from "../images/bg.jpg";
 import HomePageCSS from "../pages/style/HomePage.module.css";
-import HeaderHome from "../components/HeaderHome";
+import HeaderCenter from "../components/HeaderCenter";
 import MainLayoutCSS from "../pages/style/MainLayout.module.css";
-const HomePage = () => {
+const CentreHomePage = () => {
     return (
         <div
             className={MainLayoutCSS.container}
@@ -12,11 +12,12 @@ const HomePage = () => {
             }}
         >
             {/* <img src={bgImg} className={HomePageCSS.bg}></img> */}
-            <div className={HomePageCSS.content}>
-                <HeaderHome />
+            <HeaderCenter className={MainLayoutCSS.header} />
+            <div className={MainLayoutCSS.contentWrap}>
+                Đây là trang chủ center 
             </div>
         </div>
     );
 };
 
-export default HomePage;
+export default CentreHomePage;
