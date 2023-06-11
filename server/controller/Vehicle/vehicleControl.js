@@ -24,7 +24,7 @@ export const getAddCarForm = (req, res) => {
 
   var insertRegistration =
     "INSERT INTO registration (registrationDate, centreId, licensePlate) VALUES (now(), ?);";
-  var RegistrationItems = [centreId, licensePlate];
+  var RegistrationItems = [req.body.centreId, licensePlate];
 
   db.query(insertRegistration, [RegistrationItems], (err, results, fields) => {
     if (err) {
