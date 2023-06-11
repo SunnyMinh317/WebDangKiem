@@ -49,9 +49,9 @@ const LoginForm = () => {
         if (loginData) {
             console.log(loginData.isAdmin);
             if(loginData.isAdmin == 1){
-                navigate("/adminHome");
+                navigate("/danhsachxe");
             } else if(loginData.isAdmin == 0) {
-                navigate("/centreHome");
+                navigate("/dsxetrungtam");
             }
         } else {
             console.log("No user");

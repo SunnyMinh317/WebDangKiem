@@ -32,7 +32,7 @@ const HeaderCenter = () => {
         <header className={HeaderCSS.container}>
             <div className={HeaderCSS.logo}>
                 <i class="fa-solid fa-bus"></i>
-                <Link className={HeaderCSS.li} to="/adminHome">
+                <Link className={HeaderCSS.li} to="/centreHome">
                     RegistryTotal TRUNG TÂM
                 </Link>
             </div>
