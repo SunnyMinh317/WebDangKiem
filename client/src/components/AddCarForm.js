@@ -27,6 +27,11 @@ import axios from "axios";
 import { centreId } from "./LoginForm";
 
 const AddCarForm = () => {
+    // =======
+//   const getData = async () => {
+//     const res = await axios.post("/vehicle/getAddCarForm", {licensePlate: licensePlate, centreId: centreId});
+//     console.log(res.data);
+//     return res.data;
     const [licensePlate, setLicensePlate] = useState("");
 
     const handleLicensePlateChange = (event) => {
@@ -44,6 +49,17 @@ const AddCarForm = () => {
             });
             setData(res.data);
             console.log(data[0].licensePlate);
+        } catch (err) {
+            setError(true);
+            console.error(err);
+        }
+    };
+
+    const getRegis = async () => {
+        try {
+            const res = await axios.post("/vehicle/getAddCarFormRegis", {
+                licensePlate: licensePlate,
+            });
         } catch (err) {
             setError(true);
             console.error(err);
@@ -408,19 +424,13 @@ const AddCarForm = () => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <StyledButton>ĐĂNG KIỂM</StyledButton>
+                            <StyledButton onClick={getRegis}>ĐĂNG KIỂM</StyledButton>
                         </Grid>
                     </Grid>
                 </CardContent>
             </Card>
         </div>
     );
-// =======
-//   const getData = async () => {
-//     const res = await axios.post("/vehicle/getAddCarForm", {licensePlate: licensePlate, centreId: centreId});
-//     console.log(res.data);
-//     return res.data;
- 
 };
 
 export default AddCarForm;
