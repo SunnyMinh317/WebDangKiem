@@ -13,7 +13,7 @@ const CenterDSXe = () => {
                 <Table
                     externalButtons={true}
                     title="DANH SÁCH XE"
-                    dataLink="/vehicle/getAllVehicle"
+                    dataLink="/vehicle/getAllVehicleByCentre"
                     columnSet={ColumnCenterCarList}
                 />
             </div>

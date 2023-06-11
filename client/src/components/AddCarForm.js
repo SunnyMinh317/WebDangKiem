@@ -24,6 +24,7 @@ import { faUpload, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
 import axios from "axios";
+import { centreId } from "./LoginForm";
 
 const AddCarForm = () => {
     const [licensePlate, setLicensePlate] = useState("");
@@ -31,6 +32,7 @@ const AddCarForm = () => {
     const handleLicensePlateChange = (event) => {
         setLicensePlate(event.target.value);
     };
+
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
@@ -413,6 +415,12 @@ const AddCarForm = () => {
             </Card>
         </div>
     );
+// =======
+//   const getData = async () => {
+//     const res = await axios.post("/vehicle/getAddCarForm", {licensePlate: licensePlate, centreId: centreId});
+//     console.log(res.data);
+//     return res.data;
+ 
 };
 
 export default AddCarForm;
