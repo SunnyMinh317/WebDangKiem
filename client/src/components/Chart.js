@@ -11,28 +11,89 @@ import {
 } from "recharts";
 import axios from "axios";
 import ChartCSS from "../components/style/Chart.module.css";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 const Chart = () => {
-    const [loading, setLoading] = useState(true);
+    const [chartType, setChartType] = useState("");
+    const [dateType, setDateType] = useState("");
+    const handleTypeChange = (event) => {
+        setChartType(event.target.value);
+    };
+
+    const handleDateChange = (event) => {
+        setDateType(event.target.value);
+        // console.log(chartType + " " + dateType);
+    };
+
     const [UserDataSet, setUserDataSet] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            // setLoading(true);
+            let response = await axios.get("/dept/getRegByMonth");
             try {
-                const response = await axios.get("/dept/getRegByYear");
+                response = await axios.get("/dept/getRegByQuarter");
+                console.log("quart");
                 setUserDataSet(response.data);
+                
             } catch (error) {
                 console.error(error.message);
             }
-            // setLoading(false);
         };
 
         fetchData();
     }, []);
-
-    console.log(UserDataSet);
     return (
         <div className={ChartCSS.container}>
-            <strong className={ChartCSS.title}>BIỂU ĐỒ DỰ ĐOÁN</strong>
+            <div className={ChartCSS.titleCont}>
+                <strong className={ChartCSS.title}>
+                    {chartType === "predict"
+                        ? "Biểu đồ dự đoán"
+                        : "Biểu đồ thống kê"}
+                </strong>
+                <div className={ChartCSS.dateInput}>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue=""
+                        name="radio-buttons-group"
+                        onChange={handleTypeChange}
+                    >
+                        <FormControlLabel
+                            value="stat"
+                            control={<Radio />}
+                            label="Thống kê"
+                        />
+                        <FormControlLabel
+                            value="predict"
+                            control={<Radio />}
+                            label="Dự đoán"
+                        />
+                    </RadioGroup>
+                </div>
+                <div className={ChartCSS.typeInput}>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="month"
+                        name="radio-buttons-group"
+                        onChange={handleDateChange}
+                    >
+                        <FormControlLabel
+                            value="month"
+                            control={<Radio />}
+                            label="Tháng"
+                        />
+                        <FormControlLabel
+                            value="quart"
+                            control={<Radio />}
+                            label="Quý"
+                        />
+                        <FormControlLabel
+                            value="year"
+                            control={<Radio />}
+                            label="Năm"
+                        />
+                    </RadioGroup>
+                </div>
+            </div>
             <ResponsiveContainer width="90%" height={500}>
                 <BarChart
                     width={300}
@@ -45,8 +106,11 @@ const Chart = () => {
                     }}
                 >
                     <CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
-                    <XAxis dataKey="year" tick={{fontFamily:"titi", fontSize:"smaller"}}/>
-                    <YAxis tick={{fontFamily:"titi", fontSize:"smaller"}}/>
+                    <XAxis
+                        dataKey="year"
+                        tick={{ fontFamily: "titi", fontSize: "smaller" }}
+                    />
+                    <YAxis tick={{ fontFamily: "titi", fontSize: "smaller" }} />
                     <Tooltip />
                     <Legend />
                     <Bar
@@ -54,7 +118,11 @@ const Chart = () => {
                         name="Xe sắp đăng kiểm"
                         fill="var(--dark)"
                     />
-                    <Bar dataKey="expire_count" name="Xe hết hạn" fill="var(--sec-dark)"/>
+                    <Bar
+                        dataKey="expire_count"
+                        name="Xe hết hạn"
+                        fill="var(--sec-dark)"
+                    />
                 </BarChart>
             </ResponsiveContainer>
         </div>

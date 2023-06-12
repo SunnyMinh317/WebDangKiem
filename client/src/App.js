@@ -11,6 +11,7 @@ import CentreHomePage from './pages/CentreHomePage';
 import AdminHomePage from './pages/AdminHomePage';
 import AdminPrediction from './pages/admin/AdminPrediction';
 import AdminRegisHistory from './pages/admin/AdminRegisHistory';
+import DeptAddCar from './pages/admin/DeptAddCar';
 import CentrePrediction from './pages/center/CentrePrediction';
 import CentreRegisHistory from './pages/center/CentreRegisHistory';
 import Profile from './pages/center/Profile';
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: '/dubaocuc',
         element: <AdminPrediction/>
+      },
+      {
+        path: '/importCSV',
+        element: <DeptAddCar/>
       },
       //!Centre routes
       {
