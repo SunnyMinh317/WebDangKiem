@@ -30,7 +30,7 @@ const Footer = () => {
 							<h4>Thành viên</h4>
 							<ul>
 								<li><a href="#">Chu Ngọc Vượng</a></li>
-								<li><a href="#">Nguyễn Hoàng Ân</a></li>
+								<li><a href="#">Phạm Hoàng Ân</a></li>
 								<li><a href="#">Vũ Nhật Minh</a></li>
 							</ul>
 						</div>

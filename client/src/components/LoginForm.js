@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
+import axios from "axios";
+let centreId = null;
 
 const LoginForm = () => {
     //Phan them
@@ -40,6 +42,8 @@ const LoginForm = () => {
         try {
            const loginData =  await login(inputs);
             loginNavigate(loginData);
+            axios.post("/centre/getCentreId", {centreId: loginData.centreId});
+            centreId = loginData.centreId;
         } catch (err) {
             setError(err.response.data);
         }
@@ -148,4 +152,5 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default  LoginForm;
+export {centreId};
