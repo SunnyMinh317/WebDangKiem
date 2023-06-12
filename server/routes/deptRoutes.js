@@ -7,11 +7,9 @@ import { getRegisDept } from "../controller/Department/getRegisDept.js";
 const router = express.Router();
 
 router.get("/getRegByMonth", getRegByMonth)
-router.get("/getRegByMonthByCentre", getRegByMonthByCentre)
 router.get("/getRegByYear", getRegByYear)
-router.get("/getRegByYearByCentre", getRegByYearByCentre)
 router.get("/getRegisDept", getRegisDept)
-
+router.get("/getRegByQuarter", getRegByYear)
 
 
 export default router
