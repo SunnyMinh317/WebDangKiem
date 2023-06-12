@@ -1,8 +1,13 @@
-import db from "../../db.js";
-let centreId = null;
+
+let centreId = 1;
 
 export const getCentreId = (req, res) => {
-    centreId = req.body.centreId;
+    if(req.body.centreId == null){
+        console.log("No centre id");
+    } else {
+        centreId = req.body.centreId;   
+        console.log("get id" + centreId);
+    }
 }
 
 export {centreId};

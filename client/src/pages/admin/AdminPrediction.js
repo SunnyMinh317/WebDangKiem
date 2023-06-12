@@ -1,31 +1,32 @@
-import {React, useContext} from "react";
-import HeaderCenter from "../../components/HeaderCenter";
-import AddCarForm from "../../components/AddCarForm";
+import { React, useContext} from "react";
+import HeaderAdmin from "../../components/HeaderAdmin";
 import MainLayoutCSS from "../style/MainLayout.module.css";
+import Chart from "../../components/Chart";
 import LoginPopup from "../../components/LoginPopup";
 import { AuthContext } from "../../context/authContext";
-
-const AddCar = () => {
+const AdminPrediction = () => {
+    
     const { currentUser } = useContext(AuthContext);
-
-    if(!currentUser || currentUser.isAdmin != 0){
+    if(!currentUser){
         return (
             <div className={MainLayoutCSS.container}>
-            <HeaderCenter className={MainLayoutCSS.header}/>
+            <HeaderAdmin className={MainLayoutCSS.header}/>
             <div className={MainLayoutCSS.contentWrap}>
                 <LoginPopup/>
             </div>
         </div>
         )
     }
+
     return (
         <div className={MainLayoutCSS.container}>
-            <HeaderCenter className={MainLayoutCSS.header}/>
-            <div className={MainLayoutCSS.contentWrap}>
-                <AddCarForm/>
+            <HeaderAdmin />
+            <div className={MainLayoutCSS.centerContainer}>
+                <div className={MainLayoutCSS.graphContainer}>
+                    <Chart/>
+                </div>
             </div>
         </div>
-    )
-}
-
-export default AddCar;
+    );
+};
+export default AdminPrediction;
