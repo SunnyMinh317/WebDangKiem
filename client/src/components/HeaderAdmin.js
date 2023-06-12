@@ -90,6 +90,14 @@ const HeaderAdmin = () => {
                                 LỊCH SỬ ĐĂNG KIỂM
                             </Link>
                         </li>
+                        <li id="about">
+                            <Link
+                                className={HeaderCSS.li}
+                                to="/importCSV"
+                            >
+                                Thêm xe
+                            </Link>
+                        </li>
                         <li id="field">
                             <Link
                                 className={HeaderCSS.li}
