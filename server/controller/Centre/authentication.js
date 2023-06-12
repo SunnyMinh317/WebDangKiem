@@ -30,11 +30,10 @@ export const register = (req,res) =>{
 export const login = (req, res) => {
   const q = "SELECT * FROM centre WHERE centreEmail = ?"
   db.query(q, [req.body.email], (err, data) => {
-    console.log("login form email" + req.body.email)
     if (err) return res.status(500).json(err + "Login select error");
     if(data.length === 0){
-      return res.status(404).json("Wrong username or password")
       console.log("Not found user");
+      return res.status(404).json("Wrong username or password")
     }
     const passwordCorrect =  bcrypt.compareSync(req.body.password, data[0].centrePassword); // true
     // const passwordCorrect = true;

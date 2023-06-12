@@ -1,6 +1,5 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import HeaderCenter from "../../components/HeaderCenter";
-import AddCarForm from "../../components/AddCarForm";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 import { AuthContext } from "../../context/authContext";
 import LoginPopup from "../../components/LoginPopup";
@@ -11,11 +10,13 @@ import {
 } from "../../components/StyledComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import ProfileCSS from "../style/Profile.module.css";
 import AlertDialog from "../../components/AlertDialog";
+import axios from "axios";
 
 const Profile = () => {
+    const { currentUser } = useContext(AuthContext);
+
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -38,6 +39,7 @@ const Profile = () => {
 
     // Thay "" thành email và mật khẩu mặc định
     const [infoChange, setInfoChange] = useState({
+        centreId: currentUser.centreId,
         email: "",
         password: "",
     });
@@ -50,11 +52,16 @@ const Profile = () => {
     };
 
     //TO DO IN BACKEND
-    const handleUpdate = () => {
-        console.log(infoChange.email + " " +  infoChange.password);
+    const [err, setError] = useState(null);
+    const handleUpdate =async (e) => {
+            e.preventDefault();
+            try {
+                const res = await axios.post("/centre/updateCentreInfo", infoChange);
+                console.log(res);
+            } catch (err) {
+                setError(err.response.data);
+            }
     };
-
-    const { currentUser } = useContext(AuthContext);
 
     if (!currentUser || currentUser.isAdmin != 0) {
         return (
@@ -72,7 +79,7 @@ const Profile = () => {
                 <div className={MainLayoutCSS.profileContainer}>
                     <div className={ProfileCSS.centering}>
                         <div className={MainLayoutCSS.profileTitle}>
-                            TÊN TRUNG TÂM
+                            {currentUser ? currentUser.centreName : "Tên Trung tâm"}
                         </div>
                         <div className={ProfileCSS.contentWrap}>
                             <div className={ProfileCSS.profilePicContainer}>
