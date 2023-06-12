@@ -42,13 +42,21 @@ export const ColumnCarList = [
         width: 150,
     },
 
+    // {
+    //     headerName: "NGÀY HẾT HẠN",
+    //     field: "expireDate",
+    //     align: "left",
+    //     headerAlign: "left",
+    //     width: 150,
+    // },
     {
-        headerName: "NGÀY HẾT HẠN",
-        field: "",
+        headerName: "Tình trạng",
+        field: "isRegis",
         align: "left",
         headerAlign: "left",
-        width: 150,
+        width: "190",
     },
+
 ];
 
 export const ColumnCenter = [
@@ -96,6 +104,8 @@ export const ColumnCenter = [
     },
 ];
 
+
+
 export const ColumnCenterCarList = [
     {
         headerName: "SỐ CCCD",
@@ -132,11 +142,51 @@ export const ColumnCenterCarList = [
         headerAlign: "left",
         width: "190",
     },
+    // {
+    //     headerName: "NGÀY HẾT HẠN",
+    //     field: "expireDate",
+    //     align: "left",
+    //     headerAlign: "left",
+    //     width: "190",
+    // },
     {
-        headerName: "NGÀY HẾT HẠN",
-        field: "expireDate",
+        headerName: "Tình trạng",
+        field: "isRegis",
         align: "left",
         headerAlign: "left",
         width: "190",
     },
+];
+
+export const ColumnCenterRegis = [
+    {
+        headerName: "Biển số",
+        field: "licensePlate",
+        align: "left",
+        headerAlign: "left",
+        width: "165",
+    },
+    {
+        headerName: "Trung tâm",
+        field: "centreId",
+        align: "left",
+        headerAlign: "left",
+        width: "165",
+    },
+    {
+        headerName: "Ngày đăng kiểm",
+        field: "registrationDate",
+        align: "left",
+        headerAlign: "left",
+        width: "165",
+    },
+    {
+        headerName: "Ngày hết hạn",
+        field: "expireDate",
+        align: "left",
+        headerAlign: "left",
+        width: "165",
+    },
+    
+    
 ];

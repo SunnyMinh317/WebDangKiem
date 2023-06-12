@@ -42,8 +42,8 @@ const LoginForm = () => {
         try {
            const loginData =  await login(inputs);
             loginNavigate(loginData);
-            axios.post("/centre/getCentreId", {centreId: loginData.centreId});
             centreId = loginData.centreId;
+                
         } catch (err) {
             setError(err.response.data);
         }
@@ -53,9 +53,9 @@ const LoginForm = () => {
         if (loginData) {
             console.log(loginData.isAdmin);
             if(loginData.isAdmin == 1){
-                navigate("/adminHome");
+                navigate("/danhsachxe");
             } else if(loginData.isAdmin == 0) {
-                navigate("/centreHome");
+                navigate("/dsxetrungtam");
             }
         } else {
             console.log("No user");
