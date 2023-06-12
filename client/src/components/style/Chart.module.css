@@ -2,9 +2,24 @@
     width: 100%;
 }
 
+.container * {
+    font-family: titi;
+}
+
 .title {
     font-family: noodle;
     font-size: 1.5rem;
     margin-left: 3rem;
-    margin-bottom: 6rem;
+}
+
+.titleCont {
+    display: flex;
+}
+
+.typeInput {
+    margin-left: 3rem;
+}
+
+.dateInput {
+    margin-left: 5rem;
 }
