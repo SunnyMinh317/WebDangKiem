@@ -42,8 +42,8 @@ const LoginForm = () => {
         try {
            const loginData =  await login(inputs);
             loginNavigate(loginData);
-            axios.post("/centre/getCentreId", {centreId: loginData.centreId});
             centreId = loginData.centreId;
+                
         } catch (err) {
             setError(err.response.data);
         }

@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import DSXe from './pages/admin/DSXe';
 import DSTrungTam from './pages/admin/DSTrungTam';
@@ -11,7 +9,10 @@ import AddCar from './pages/center/AddCar';
 // import HomePage from './pages/HomePage';
 import CentreHomePage from './pages/CentreHomePage';
 import AdminHomePage from './pages/AdminHomePage';
-import Dashboard from './pages/prediction/Dashboard';
+import AdminPrediction from './pages/admin/AdminPrediction';
+import AdminRegisHistory from './pages/admin/AdminRegisHistory';
+import CentrePrediction from './pages/center/CentrePrediction';
+import CentreRegisHistory from './pages/center/CentreRegisHistory';
 import Profile from './pages/center/Profile';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
@@ -44,9 +45,19 @@ const router = createBrowserRouter([
         path: '/danhsachtrungtam',
          element: <DSTrungTam/>,
 
-      },{
+      },
+      {
+        path: '/lsdkcuc',
+         element: <AdminRegisHistory/>,
+
+      },
+      {
         path: '/captaikhoan',
          element: <CapTaiKhoan/>,
+      },
+      {
+        path: '/dubaocuc',
+        element: <AdminPrediction/>
       },
       //!Centre routes
       {
@@ -62,8 +73,12 @@ const router = createBrowserRouter([
         element: <AddCar/>
       },
       {
-        path: '/dubao',
-        element: <Dashboard/>
+        path: '/dubaotrungtam',
+        element: <CentrePrediction/>
+      },
+      {
+        path: '/lsdktrungtam',
+        element: <CentreRegisHistory/>
       },
       {
         path: '/profile',

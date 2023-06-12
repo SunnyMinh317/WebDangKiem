@@ -37,7 +37,7 @@ const HeaderCenter = () => {
                 </Link>
             </div>
             <nav>
-                {currentUser ? (
+                {(currentUser && currentUser.isAdmin == 1) ? (
                     <div className={HeaderCSS.navContainer}>
                         <input
                             type="checkbox"
@@ -59,6 +59,22 @@ const HeaderCenter = () => {
                                     to="/themxe"
                                 >
                                     ĐĂNG KIỂM
+                                </Link>
+                            </li>
+                            <li id="about">
+                                <Link
+                                    className={HeaderCSS.li}
+                                    to="/lsdktrungtam"
+                                >
+                                    LỊCH SỬ ĐĂNG KIỂM
+                                </Link>
+                            </li>
+                            <li id="about">
+                                <Link
+                                    className={HeaderCSS.li}
+                                    to="/dubaotrungtam"
+                                >
+                                    DỰ BÁO ĐĂNG KIỂM
                                 </Link>
                             </li>
                             <li

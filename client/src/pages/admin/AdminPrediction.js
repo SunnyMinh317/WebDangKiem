@@ -1,19 +1,8 @@
-import { React, useContext, useState, useEffect } from "react";
+import { React} from "react";
 import HeaderAdmin from "../../components/HeaderAdmin";
 import MainLayoutCSS from "../style/MainLayout.module.css";
-import {
-    BarChart,
-    CartesianGrid,
-    ResponsiveContainer,
-    XAxis,
-    YAxis,
-    Bar,
-    Tooltip,
-    Legend,
-} from "recharts";
-import axios from "axios";
 import Chart from "../../components/Chart";
-const Dashboard = () => {
+const AdminPrediction = () => {
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin />
@@ -25,4 +14,4 @@ const Dashboard = () => {
         </div>
     );
 };
-export default Dashboard;
+export default AdminPrediction;

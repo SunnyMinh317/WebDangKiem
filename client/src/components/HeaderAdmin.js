@@ -44,6 +44,14 @@ const HeaderAdmin = () => {
                                     DANH SÁCH TRUNG TÂM
                                 </Link>
                             </li>
+                            <li id="about">
+                                <Link
+                                    className={HeaderCSS.li}
+                                    to="/lsdkcuc"
+                                >
+                                    LỊCH SỬ ĐĂNG KIỂM
+                                </Link>
+                            </li>
                             <li id="field">
                                 <Link
                                     className={HeaderCSS.li}
