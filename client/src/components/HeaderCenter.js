@@ -8,7 +8,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const HeaderCenter = () => {
     const { currentUser, logout } = useContext(AuthContext);
 
-    if(!currentUser) {
+    if(!currentUser || currentUser.isAdmin != 0) {
         return (
             <header className={HeaderCSS.container}>
             <div className={HeaderCSS.logo}>
@@ -18,7 +18,7 @@ const HeaderCenter = () => {
             <nav>
                     <ul id="menu">
                         <li id="logout">
-                            <Link className={HeaderCSS.li} to="/login" onClick={logout}>
+                            <Link className={HeaderCSS.li} to="/login">
                                 ĐĂNG NHẬP ĐỂ BẮT ĐẦU TRUNG TÂM
                             </Link>
                         </li>
@@ -37,7 +37,6 @@ const HeaderCenter = () => {
                 </Link>
             </div>
             <nav>
-                {(currentUser && currentUser.isAdmin == 1) ? (
                     <div className={HeaderCSS.navContainer}>
                         <input
                             type="checkbox"
@@ -133,19 +132,6 @@ const HeaderCenter = () => {
                             </div>
                         </ul>
                     </div>
-                ) : (
-                    <ul id="menu">
-                        <li id="logout">
-                            <Link
-                                className={HeaderCSS.li}
-                                to="/login"
-                                onClick={logout}
-                            >
-                                ĐĂNG NHẬP ĐỂ BẮT ĐẦU CỤC
-                            </Link>
-                        </li>
-                    </ul>
-                )}
             </nav>
         </header>
     );

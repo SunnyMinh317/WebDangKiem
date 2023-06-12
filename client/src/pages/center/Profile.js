@@ -1,9 +1,23 @@
-import React from "react";
+import {React, useContext} from "react";
 import HeaderCenter from "../../components/HeaderCenter";
 import AddCarForm from "../../components/AddCarForm";
 import MainLayoutCSS from "../style/MainLayout.module.css";
+import { AuthContext } from "../../context/authContext";
+import LoginPopup from "../../components/LoginPopup";
 
 const Profile = () => {
+    const { currentUser } = useContext(AuthContext);
+
+    if(!currentUser || currentUser.isAdmin != 0){
+        return (
+            <div className={MainLayoutCSS.container}>
+            <HeaderCenter className={MainLayoutCSS.header}/>
+            <div className={MainLayoutCSS.contentWrap}>
+                <LoginPopup/>
+            </div>
+        </div>
+        )
+    }
     return (
         <div>
             <HeaderCenter className={MainLayoutCSS.header} />

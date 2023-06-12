@@ -10,24 +10,27 @@ import axios from "axios";
 const CentreRegisHistory = () => {
     const { currentUser } = useContext(AuthContext);
 
-    // useEffect( async () => {
-    //         axios.("/centre/getCentreId");
-    // }, []); 
+    if(!currentUser || currentUser.isAdmin != 0){
+        return (
+            <div className={MainLayoutCSS.container}>
+            <HeaderCenter className={MainLayoutCSS.header}/>
+            <div className={MainLayoutCSS.contentWrap}>
+                <LoginPopup/>
+            </div>
+        </div>
+        )
+    } 
 
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderCenter className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
-            {!(currentUser) ? (
-                    <LoginPopup/>
-                ) : (
                 <Table
                     externalButtons={true}
                     title="LỊCH SỬ ĐĂNG KIỂM"
                     dataLink="/centre/getRegisCentre"
                     columnSet={ColumnCenterRegis}
                 />
-            )}
             </div>
         </div>
     );

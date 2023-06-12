@@ -9,20 +9,27 @@ import { ColumnCenterCarList } from "../../components/Columns";
 const CenterDSXe = () => {
     const { currentUser } = useContext(AuthContext);
 
+    if(!currentUser || currentUser.isAdmin != 0){
+        return (
+            <div className={MainLayoutCSS.container}>
+            <HeaderCenter className={MainLayoutCSS.header}/>
+            <div className={MainLayoutCSS.contentWrap}>
+                <LoginPopup/>
+            </div>
+        </div>
+        )
+    }
+
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderCenter className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
-            {!(currentUser) ? (
-                    <LoginPopup/>
-                ) : (
                 <Table
                     externalButtons={true}
                     title="DANH SÁCH XE"
                     dataLink="/vehicle/getAllVehicleByCentre"
                     columnSet={ColumnCenterCarList}
                 />
-            )}
             </div>
         </div>
     );

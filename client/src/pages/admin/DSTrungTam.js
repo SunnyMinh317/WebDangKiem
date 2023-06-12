@@ -10,19 +10,6 @@ const DSTrungTam = () => {
     const [backendData, setBackendData] = useState([]);
     const { currentUser } = useContext(AuthContext);
     
-
-    // useEffect(() => {
-    //     const getAllVehicle = async () => {
-    //         try {
-    //             const respond = await axios.get("/centre/getAllCentres");
-    //             setBackendData(respond.data);
-    //             // console.log(backendData);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     };
-    //     getAllVehicle();
-    // }, []);
     
     return (
         <div className={MainLayoutCSS.container}>
