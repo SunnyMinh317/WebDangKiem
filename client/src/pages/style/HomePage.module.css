@@ -1,115 +1,41 @@
-
-
-/* Reset styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-}
-
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    height: 100vh;
-    background-color: var(--dark);
+    display: flex;
+    width: 85%;
+    margin-top: 40px;
 }
 
-header {
+.bigContainer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 10px 0;
 }
 
-nav ul {
-    list-style-type: none;
-    display: flex;
+.titleContainer {
+    font-family: noodle;
+    font-size: 4rem;
+    letter-spacing: 5px;
+    margin-bottom: 100px;
 }
 
-nav ul li {
-    margin-right: 20px;
+.subtitleContainer {
+    font-family: titi;
+    font-size: larger;
+    margin-bottom: 30px;
 }
 
-nav ul li a {
-    color: #333;
-    text-decoration: none;
+.left {
+    width: 40%;
+    margin-left: 4vw;
+    margin-top: 50px;
+    /* border: 1px solid red */
 }
 
-nav ul li a:hover {
-    color: #555;
+.right {
+    width: 50%;
+    margin-left: 4vw;
+    /* border: 1px solid red */
 }
 
-main {
-    margin-top: 30px;
-}
 
-.hero {
-    text-align: center;
-    margin-bottom: 40px;
-}
 
-.hero h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.hero p {
-    font-size: 18px;
-    color: #777;
-    margin-bottom: 20px;
-}
-
-.cta-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.cta-button:hover {
-    background-color: #555;
-}
-
-.features {
-    display: flex;
-    justify-content: space-between;
-}
-
-.feature {
-    text-align: center;
-    margin: 0 10px;
-}
-
-.feature i {
-    font-size: 48px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.feature h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.feature p {
-    font-size: 16px;
-    color: #777;
-}
-
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #333;
-    color: #fff;
-}

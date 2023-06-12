@@ -8,7 +8,7 @@ import LoginPopup from "../../components/LoginPopup";
 const CapTaiKhoan = () => {
     const { currentUser } = useContext(AuthContext);
 
-    if(!currentUser){
+    if(!currentUser || currentUser.isAdmin != 1){
         return (
             <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header}/>

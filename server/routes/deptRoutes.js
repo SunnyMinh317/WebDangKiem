@@ -3,8 +3,8 @@ import importCSV from "../controller/Department/importCSV.js";
 import db from "../db.js";
 import { getRegByYear } from "../controller/Department/getRegByYear.js";
 import { getRegByMonth } from "../controller/Department/getRegByMonth.js";
-import { getRegByQuarter } from "../controller/Department/getRegByQuarter.js";
 import { getRegisDept } from "../controller/Department/getRegisDept.js";
+import { getRegByQuarter } from "../controller/Department/getRegByQuarter.js";
 const router = express.Router();
 
 router.get("/getRegByMonth", getRegByMonth)
