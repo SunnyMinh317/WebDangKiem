@@ -37,20 +37,23 @@ const Profile = () => {
     };
 
     // Thay "" thành email và mật khẩu mặc định
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [infoChange, setInfoChange] = useState({
+        email: "",
+        password: "",
+    });
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handleChange = (e) => {
+        setInfoChange((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        console.log(
+            "Profile value " + [e.target.name] + ": " + e.target.value
+        );
     };
 
     //TO DO IN BACKEND
     const handleUpdate = () => {
-        console.log(password + " " + email);
+        console.log(infoChange.email + " " +  infoChange.password);
     };
+
     const { currentUser } = useContext(AuthContext);
 
     if (!currentUser || currentUser.isAdmin != 0) {
@@ -84,45 +87,47 @@ const Profile = () => {
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Mã trung tâm"
-                                            value="Filler Text Fillter Text"
+                                            value={currentUser ? currentUser.centreId : ""}
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Thành phố"
-                                            value="Filler Text Fillter Text"
+                                            value={currentUser ? currentUser.centreCity : ""}
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Quận"
-                                            value="Filler Text Fillter Text"
+                                            value={currentUser ? currentUser.centreDistrict : ""}
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Ngày thành lập"
-                                            value="Filler Text Fillter Text"
+                                            value={currentUser ? currentUser.establishedDate : ""}
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={12}>
                                         <StyledTextField
+                                            name = "email"
                                             label="Email"
-                                            defaultValue={"email@example.com"}
+                                            defaultValue={currentUser ? currentUser.centreEmail : ""}
                                             InputProps={{
                                                 readOnly: editable
                                                     ? false
                                                     : true,
                                             }}
-                                            onChange={handleEmailChange}
+                                            onChange={handleChange}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={12}>
                                         <StyledTextField
+                                            name= "password"
                                             label="Password"
                                             type={
                                                 showPassword
@@ -130,7 +135,6 @@ const Profile = () => {
                                                     : "password"
                                             }
                                             defaultValue="password"
-                                            name="password"
                                             InputProps={{
                                                 readOnly: editable
                                                     ? false
@@ -157,7 +161,7 @@ const Profile = () => {
                                                     </InputAdornment>
                                                 ),
                                             }}
-                                            onChange={handlePasswordChange}
+                                            onChange={handleChange}
                                             fullWidth
                                         />
                                     </Grid>
