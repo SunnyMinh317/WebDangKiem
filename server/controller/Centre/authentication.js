@@ -28,7 +28,7 @@ export const register = (req,res) =>{
 
 
 export const login = (req, res) => {
-  const q = "SELECT * FROM centre WHERE centreEmail = ?"
+  const q = "SELECT centreId, centreName, centreCity, centreDistrict, DATE_FORMAT(establishedDate, '%Y-%m-%d') AS establishedDate, centreEmail, centrePassword, isAdmin FROM centre WHERE centreEmail = ?"
   db.query(q, [req.body.email], (err, data) => {
     if (err) return res.status(500).json(err + "Login select error");
     if(data.length === 0){

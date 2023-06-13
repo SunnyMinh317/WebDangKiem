@@ -27,7 +27,7 @@ import {
 } from "@mui/x-data-grid";
 import { LinearProgress } from "@mui/material";
 import DeptAddCar from "../../pages/admin/DeptAddCar";
-import { AuthContext } from "context/authContext";
+import { AuthContext } from "../../context/authContext";
 import { logDOM } from "@testing-library/react";
 
 const Table = ({

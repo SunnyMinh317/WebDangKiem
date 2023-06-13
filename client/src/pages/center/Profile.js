@@ -41,7 +41,7 @@ const Profile = () => {
     // Thay "" thành email và mật khẩu mặc định
     const [infoChange, setInfoChange] = useState({
         centreId: currentUser.centreId,
-        email: "",
+        email: currentUser.centreEmail,
         password: "",
     });
 
