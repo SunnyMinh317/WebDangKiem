@@ -214,7 +214,7 @@ const Profile = () => {
                                                 }
                                                 defaultValue={
                                                     currentUser
-                                                        ? currentUser.centrePassword
+                                                        ? ""
                                                         : ""
                                                 }
                                                 InputProps={{

@@ -123,7 +123,7 @@ const HeaderCenter = () => {
                                 <li>
                                     <Link
                                         className={HeaderCSS.li}
-                                        to="/login"
+                                        to="/adminhome"
                                         onClick={logout}
                                     >
                                         ĐĂNG XUẤT

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useContext } from "react";
 
 import TableCSS from "../style/Table.module.css";
 
@@ -22,9 +22,13 @@ import {
     GridToolbarFilterButton,
     GridToolbarDensitySelector,
     GridPagination,
+    GridToolbarExport,
+    
 } from "@mui/x-data-grid";
 import { LinearProgress } from "@mui/material";
 import DeptAddCar from "../../pages/admin/DeptAddCar";
+import { AuthContext } from "context/authContext";
+import { logDOM } from "@testing-library/react";
 
 const Table = ({
     hasExtraCol,
@@ -111,21 +115,20 @@ const Table = ({
     }
 
     function CustomToolbar() {
+        const toolbarStyle = {
+            color: "white",
+            backgroundColor: "var(--orange)",
+            padding: "12px",
+            fontWeight: "500",
+            fontSize: "1.02em",
+            marginBottom: "12px" ,
+          };
         return (
             <GridToolbarContainer>
-                <GridToolbarColumnsButton />
-                <GridToolbarFilterButton />
-                <GridToolbarDensitySelector />
-            </GridToolbarContainer>
-        );
-    }
-
-    function CustomToolbar() {
-        return (
-            <GridToolbarContainer>
-                <GridToolbarColumnsButton />
-                <GridToolbarFilterButton />
-                <GridToolbarDensitySelector />
+                <GridToolbarColumnsButton style={toolbarStyle} name="Custom Columns"/>
+                <GridToolbarFilterButton style={toolbarStyle}name="Custom Columns"/>
+                <GridToolbarDensitySelector style={toolbarStyle}/>
+                <GridToolbarExport style={toolbarStyle}/>
             </GridToolbarContainer>
         );
     }
@@ -143,12 +146,14 @@ const Table = ({
         setShowImport(false);
     };
 
+    const { currentUser } = useContext(AuthContext);
+
     return (
         <div className={TableCSS.gridContainer}>
             <div className={TableCSS.title}>{title}</div>
             <div className={TableCSS.externalBtn}>
-                <ExportButton data={data} />
-                {externalButtons && (
+                {/* <ExportButton data={data} /> */}
+                { (externalButtons && currentUser.isAdmin == "1" && title == "DANH SÁCH XE") &&  (
                     <StyledButton
                         variant="contained"
                         // component="span"
@@ -177,6 +182,22 @@ const Table = ({
                             toolbar: CustomToolbar,
                             pagination: GridPagination,
                             loadingOverlay: LinearProgress,
+                        }}
+                        localeText={{ 
+                            toolbarColumns: " Danh sách cột",
+                            toolbarFilters : "Lọc dữ liệu",
+
+                            //csv
+                            toolbarExport: "Suất dữ liệu",
+                            toolbarExportCSV: 'Tải dưới dạng CSV',
+                            toolbarExportPrint: '',
+
+                            //density
+                            toolbarDensity: "Kích thước hàng",
+                            toolbarDensityCompact: 'Nhỏ',
+                            toolbarDensityStandard: 'Vừa ',
+                            toolbarDensityComfortable: 'Lớn',
+
                         }}
                         rows={data}
                         columns={newCols}
