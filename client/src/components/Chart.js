@@ -11,11 +11,22 @@ import {
 } from "recharts";
 import axios from "axios";
 import ChartCSS from "../components/style/Chart.module.css";
-import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
-const Chart = () => {
+import {
+    RadioGroup,
+    FormControlLabel,
+    FormControl,
+    Radio,
+    InputLabel,
+    Select,
+    MenuItem,
+} from "@mui/material";
+const Chart = ({ isAdmin }) => {
     const [chartType, setChartType] = useState("predict");
     const [dateType, setDateType] = useState("year");
     const [UserDataSet, setUserDataSet] = useState([]);
+    const [citySet, setCitySet] = useState([]);
+    const [city, setCity] = useState("");
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,6 +59,18 @@ const Chart = () => {
         fetchData();
     }, [chartType, dateType]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("/getCity");
+                setCitySet(response.data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+        fetchData();
+    });
+
     const handleTypeChange = (event) => {
         setChartType(event.target.value);
     };
@@ -56,6 +79,12 @@ const Chart = () => {
         setDateType(event.target.value);
         // console.log(chartType + " " + dateType);
     };
+
+    const handleCityChange = (event) => {
+        setCity(event.target.value);
+        console.log(city);
+    }
+
     return (
         <div className={ChartCSS.container}>
             <div className={ChartCSS.titleCont}>
@@ -109,7 +138,33 @@ const Chart = () => {
                         />
                     </RadioGroup>
                 </div>
+                {isAdmin && (
+                    <div className={ChartCSS.citySelect}>
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">
+                                Chọn khu vực
+                            </InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                label="Khu vực"
+                                onChange={handleCityChange}
+                            >
+                                <MenuItem value='Toàn quốc'>Toàn quốc</MenuItem>
+                                <MenuItem value='Hà Nội'>Hà Nội</MenuItem>
+                                <MenuItem value='TP. Hồ Chí Minh'>
+                                    TP. Hồ Chí Minh
+                                </MenuItem>
+                                <MenuItem value='TP. Đà Nẵng'>
+                                    TP. Đà Nẵng
+                                </MenuItem>
+                                <MenuItem value='Long An'>Long An</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                )}
             </div>
+
             <ResponsiveContainer width="90%" height={500}>
                 <BarChart
                     width={300}
