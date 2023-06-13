@@ -30,6 +30,8 @@ import DeptAddCar from "../../pages/admin/DeptAddCar";
 import { AuthContext } from "context/authContext";
 import { logDOM } from "@testing-library/react";
 
+
+
 const Table = ({
     hasExtraCol,
     uploadFileButton,
@@ -78,6 +80,7 @@ const Table = ({
         headerAlign: "left",
     };
 
+
     const statusColumn = {
         field: "isRegis",
         headerName: "TÌNH TRẠNG",
@@ -94,8 +97,11 @@ const Table = ({
         headerAlign: "left",
     };
 
+    const [carTable, setCarTable] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
+    const { currentUser } = useContext(AuthContext);
+
 
     const handleOpenModal = (row) => {
         console.log(row);
@@ -108,7 +114,7 @@ const Table = ({
     };
 
     let newCols;
-    if (hasExtraCol) {
+    if (hasExtraCol && title == "DANH SÁCH XE") {
         newCols = [...columns, statusColumn, detailColumn];
     } else {
         newCols = [...columns];
@@ -146,7 +152,6 @@ const Table = ({
         setShowImport(false);
     };
 
-    const { currentUser } = useContext(AuthContext);
 
     return (
         <div className={TableCSS.gridContainer}>
@@ -211,6 +216,7 @@ const Table = ({
                                 columnVisibilityModel: {
                                     // Hide columns status and traderName, the other columns will remain visible
                                     address: false,
+                                    ownerId: false,
                                 },
                             },
                         }}

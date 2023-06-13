@@ -5,7 +5,6 @@ import LoginPopup from "../../components/LoginPopup";
 import { AuthContext } from "../../context/authContext";
 import { Grid, Button, Icon } from "@mui/material";
 import FormCSS from "../../components/style/Form.module.css";
-import "../../components/style/importCSV.css";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -49,8 +48,8 @@ const DeptAddCar = ({showImport, closeImport}) => {
     };
 
     return (
-            <form action="/import-csv" onSubmit={handleSubmit}>
-                <label className= ".adddd"htmlFor="upload-excel">
+            <form action="/import-csv" onSubmit={handleSubmit} className={FormCSS.csvForm}>
+                <label className={FormCSS.CSVname} htmlFor="upload-excel">
                     <input
                         type="file"
                         name="upload-excel"
@@ -59,18 +58,9 @@ const DeptAddCar = ({showImport, closeImport}) => {
                         onChange={handleFileInput}
                     />
                     <div className={FormCSS.fileUploadBtn}>
-                        {" "}
-                        <Button className="addCSV"
+                        <Button className={FormCSS.uploadBtn}
                             variant="contained"
                             component="span"
-                            endIcon={
-                                <Icon>
-                                    <FontAwesomeIcon
-                                        icon={faUpload}
-                                        className={FormCSS.ButtonIcon}
-                                    />
-                                </Icon>
-                            }
                         >
                             Thêm xe đã đăng ký
                         </Button>
@@ -80,15 +70,7 @@ const DeptAddCar = ({showImport, closeImport}) => {
                         ></div>
                     </div>
                 </label>
-                <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    style={{ marginTop: "10px", marginBottom: "5px" }}
-                >
-                    <Button
+                    <Button 
                         type="submit"
                         variant="contained"
                         disabled={!selectedFile}
@@ -96,7 +78,6 @@ const DeptAddCar = ({showImport, closeImport}) => {
                     >
                         Submit
                     </Button>
-                </Grid>
             </form>
     );
 };

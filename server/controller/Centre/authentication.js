@@ -7,8 +7,8 @@ export const register = (req,res) =>{
   const q = "SELECT * FROM centre WHERE centreEmail = ? OR centreName = ?"
   
   db.query(q, [req.body.email, req.body.name], (err, data) => {
-    if (err) return res.status(500).json(err + "Register select error");
-    if (data.length) return res.status(409).json("Centre already exists!");
+    if (err) return res.status(500).json(err + "Tạo tài khoản không thành công");
+    if (data.length) return res.status(409).json("Trung tâm đã tồn tại");
 
 
     //Hash password

@@ -1,17 +1,21 @@
-form{
-    width: 500px;
+/* form{
+    width: fit-content;
     height: 100px;
-    display: block;
+    display: flex;
     color: #000;
+    background-color: #f77c7c;
+    margin-left: 100px;
   }
 
 .addVSC {
   width: 1000px;
+  background-color: aqua;
 }
 
 .adddd{
   width: 1000px;
-}
+  background-color: aqua;
+} */
   /* form p{
     width: 100%;
     height: 100%;

@@ -102,7 +102,7 @@ const HeaderCenter = () => {
                                         <li className={HeaderCSS.dropDownItem}>
                                             <Link
                                                 className={HeaderCSS.li}
-                                                to="/login"
+                                                to="/adminHome"
                                                 onClick={logout}
                                             >
                                                 ĐĂNG XUẤT

@@ -90,14 +90,6 @@ const HeaderAdmin = () => {
                                 LỊCH SỬ ĐĂNG KIỂM
                             </Link>
                         </li>
-                        <li id="about">
-                            <Link
-                                className={HeaderCSS.li}
-                                to="/importCSV"
-                            >
-                                Thêm xe
-                            </Link>
-                        </li>
                         <li id="field">
                             <Link
                                 className={HeaderCSS.li}
@@ -132,7 +124,7 @@ const HeaderAdmin = () => {
                                     <li className={HeaderCSS.dropDownItem}>
                                         <Link
                                             className={HeaderCSS.li}
-                                            to="/login"
+                                            to="/adminHome"
                                             onClick={logout}
                                         >
                                             ĐĂNG XUẤT
@@ -153,7 +145,7 @@ const HeaderAdmin = () => {
                             <li>
                                 <Link
                                     className={HeaderCSS.li}
-                                    to="/login"
+                                    to="/adminHome"
                                     onClick={logout}
                                 >
                                     ĐĂNG XUẤT

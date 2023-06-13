@@ -19,6 +19,9 @@ const CentreHomePage = () => {
                         <div className={HomePageCSS.titleContainer}>
                             REGISTRYTOTAL
                         </div>
+                        {currentUser &&<div className={HomePageCSS.nameContainer}>
+                            Cục Đăng kiểm
+                        </div>}
                         <div className={HomePageCSS.leftBottom}>
                             <div className={HomePageCSS.subtitleContainer}>
                                 Đăng kiểm nhanh chóng cùng RegistryTotal

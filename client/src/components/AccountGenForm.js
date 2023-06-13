@@ -11,6 +11,7 @@ import FormCSS from "./style/Form.module.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { StyledButton, StyledSelect, StyledTextField } from "./StyledComponent";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -25,8 +26,10 @@ const AccountGenForm = () => {
     })
 
     const [err,setErr] = useState (null) 
+    const [updateMess, setUpdateMess] = useState(false);
 
     const navigate = useNavigate()
+
 
     const handleChange = e => {
         setInputs(prev => ({...prev, [e.target.name] : e.target.value})) 
@@ -39,9 +42,12 @@ const AccountGenForm = () => {
             const res = await axios.post("centre/register", inputs)
             console.log("Send centre Register");
             console.log(res)
+            setErr(null)
+            setUpdateMess(true)
             // navigate("/login")
         } catch(err){
             setErr(err.response.data)
+            setUpdateMess(false)
             console.log(err.response.data)
         } 
     }  
@@ -50,6 +56,18 @@ const AccountGenForm = () => {
         <div className={FormCSS.container}>
                 <Card className={FormCSS.formContainer}>
                     <CardContent>
+                        <div className={FormCSS.alertContainer}>
+                            {err && (
+                                <div className={FormCSS.errorBox}>
+                                    {err}
+                                </div>
+                            )}
+                            {updateMess && (
+                                <div className={FormCSS.successBox}>
+                                    Tạo tài khoản thành công
+                                </div>
+                            )}
+                        </div>
                         <Typography
                             gutterBottom
                             variant="h5"
@@ -120,6 +138,7 @@ const AccountGenForm = () => {
                                     Cấp tài khoản
                                 </StyledButton>
                             </Grid>
+
                         </Grid>
                     </CardContent>
                 </Card>
