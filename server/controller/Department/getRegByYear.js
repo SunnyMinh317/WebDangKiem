@@ -2,23 +2,47 @@ import db from "../../db.js";
 import { centreId } from "../Centre/getCentreId.js";
 
 export const getRegByYear = (req, res) => {
-  var sql =
-    "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS year, COUNT(*) AS expire_count FROM registration WHERE year(expireDate) >= year(CURRENT_DATE) GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS expire ON calendar.year = expire.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) + 5 AS year, COUNT(*) AS reg_count FROM registration WHERE registrationDate >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5 ) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
-  db.query(sql, function (err, data) {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).json(data);
-  });
+  if (req.body.regionName === "Toàn quốc") {
+    var sql =
+      "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS year, COUNT(*) AS expire_count FROM registration WHERE year(expireDate) >= year(CURRENT_DATE) GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS expire ON calendar.year = expire.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) + 5 AS year, COUNT(*) AS reg_count FROM registration WHERE registrationDate >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5 ) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
+    db.query(sql, function (err, data) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(data);
+    });
+  } else {
+    var sql =
+      "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS YEAR, COUNT(*) AS expire_count FROM registration INNER JOIN vehicles ON registration.licensePlate = vehicles.licensePlate INNER JOIN region ON vehicles.regionId = region.regionId WHERE YEAR(expireDate) >= YEAR(CURRENT_DATE) AND region.regionName = ? GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS EXPIRE ON calendar.year = EXPIRE.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 1 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) + 4 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) + 5 AS YEAR, COUNT(*) AS reg_count FROM registration INNER JOIN vehicles ON registration.licensePlate = vehicles.licensePlate INNER JOIN region ON vehicles.regionId = region.regionId WHERE YEAR(registrationDate) >= YEAR(CURRENT_DATE) - 5 AND region.regionName = ? GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5 ) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
+    db.query(sql, [req.body.regionName, req.body.regionName], function (err, data) {
+      if (err) {
+        console.log(err)
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(data);
+    });
+  }
 };
 
 export const getStatByYear = (req, res) => {
-  var sql =
-    "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS YEAR, COUNT(*) AS expire_count FROM registration WHERE YEAR(expireDate) >= YEAR(CURRENT_DATE) - 5 GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS EXPIRE ON calendar.year = EXPIRE.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) AS YEAR, COUNT(*) AS reg_count FROM registration WHERE registrationDate >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
-  db.query(sql, function (err, data) {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).json(data);
-  });
+  if (req.body.regionName === "Toàn quốc") {
+    var sql =
+      "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS YEAR, COUNT(*) AS expire_count FROM registration WHERE YEAR(expireDate) >= YEAR(CURRENT_DATE) - 5 GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS EXPIRE ON calendar.year = EXPIRE.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) AS YEAR, COUNT(*) AS reg_count FROM registration WHERE registrationDate >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR) GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
+    db.query(sql, function (err, data) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(data);
+    });
+  } else {
+    var sql =
+      "WITH expire_reg AS( SELECT calendar.year, IFNULL(expire_count, 0) AS expire_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) - 1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(expireDate) AS YEAR, COUNT(*) AS expire_count FROM registration INNER JOIN vehicles ON registration.licensePlate = vehicles.licensePlate INNER JOIN region ON vehicles.regionId = region.regionId WHERE YEAR(expireDate) >= YEAR(CURRENT_DATE) - 5  AND region.regionName = ? GROUP BY YEAR(expireDate) ORDER BY YEAR(expireDate) LIMIT 5 ) AS EXPIRE ON calendar.year = EXPIRE.year ORDER BY calendar.year ), new_reg AS( SELECT calendar.year, IFNULL(reg_count, 0) AS new_reg_count FROM ( SELECT DISTINCT YEAR(CURRENT_DATE) - 5 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -4 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -3 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -2 AS YEAR FROM registration UNION SELECT DISTINCT YEAR(CURRENT_DATE) -1 AS YEAR FROM registration ) AS calendar LEFT JOIN( SELECT YEAR(registrationDate) AS YEAR, COUNT(*) AS reg_count FROM registration INNER JOIN vehicles ON registration.licensePlate = vehicles.licensePlate INNER JOIN region ON vehicles.regionId = region.regionId WHERE registrationDate >= DATE_SUB(CURDATE(), INTERVAL 5 YEAR)  AND region.regionName = ? GROUP BY YEAR(registrationDate) ORDER BY YEAR(registrationDate) LIMIT 5) AS regis ON calendar.year = regis.year ORDER BY calendar.year ) SELECT expire_reg.year, expire_reg.expire_count, new_reg.new_reg_count FROM expire_reg JOIN new_reg ON expire_reg.year = new_reg.year ORDER BY YEAR;";
+    db.query(sql, [req.body.regionName, req.body.regionName], function (err, data) {
+      if (err) {
+        console.log(err)
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(data);
+    });
+  }
 };
