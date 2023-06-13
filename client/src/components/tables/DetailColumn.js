@@ -1,7 +1,7 @@
 export const DetailColumn = [
     {
         headerName: "Số CCCD",
-        field: "ownerId",
+        field: "cccd",
     },
     {
         headerName: "Họ và tên chủ sở hữu",

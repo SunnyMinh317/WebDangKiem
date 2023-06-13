@@ -7,12 +7,13 @@ import { getRegisDept } from "../controller/Department/getRegisDept.js";
 import { getRegByQuarter, getStatByQuarter } from "../controller/Department/getRegByQuarter.js";
 const router = express.Router();
 
-router.get("/getRegByMonth", getRegByMonth)
-router.get("/getRegByYear", getRegByYear)
+
 router.get("/getRegisDept", getRegisDept)
-router.get("/getRegByQuarter", getRegByQuarter)
-router.get("/getStatByYear", getStatByYear)
-router.get("/getStatByMonth", getStatByMonth)
-router.get("/getStatByQuarter", getStatByQuarter)
+router.post("/getRegByMonth", getRegByMonth)
+router.post("/getRegByYear", getRegByYear)
+router.post("/getRegByQuarter", getRegByQuarter)
+router.post("/getStatByYear", getStatByYear)
+router.post("/getStatByMonth", getStatByMonth)
+router.post("/getStatByQuarter", getStatByQuarter)
 
 export default router

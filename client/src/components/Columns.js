@@ -1,12 +1,5 @@
 export const ColumnCarList = [
     {
-        headerName: "SỐ CCCD",
-        field: "ownerId",
-        align: "left",
-        headerAlign: "left",
-        width: 100,
-    },
-    {
         headerName: "BIỂN SỐ",
         field: "licensePlate",
         align: "left",
