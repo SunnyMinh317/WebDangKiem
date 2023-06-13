@@ -401,7 +401,7 @@ const AddCarForm = () => {
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <StyledTextField
-                                label="ID"
+                                label="Ngày sản xuất"
                                 value={data ? data[0].manufactureDate : ""}
                                 InputProps={{
                                     readOnly: true,

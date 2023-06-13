@@ -25,6 +25,8 @@ const Profile = () => {
 
     const [isOpen, setOpen] = useState(false);
     const handleEditing = () => {
+        setError(false);
+        setUpdateMess(false);
         setOpen(true);
     };
 
@@ -64,6 +66,7 @@ const Profile = () => {
             console.log(res.data);
             setUpdateMess(true);
         } catch (err) {
+            setUpdateMess(false);
             setError(true);
         }
     };

@@ -20,6 +20,7 @@
     font-family: "Poppins",sans-serif;
     display: block  ; 
     text-align: center;
+    margin-top: 50px;
 }
 .popup #close{
     display: block;
