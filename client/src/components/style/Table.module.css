@@ -22,7 +22,7 @@
 .title {
     width: 80%;
     font-family: noodle;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     margin-left: 10%;
 }
 
@@ -45,11 +45,11 @@
     font-size: larger;
 }
 
-.regis {
+.noRegis {
     color: #29a847;
 }
 
-.noRegis {
+.regis {
     color: #c3192a;
 }
 

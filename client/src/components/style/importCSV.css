@@ -1,14 +1,18 @@
 form{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -250px;
     width: 500px;
-    height: 200px;
-    border: 4px dashed #bababa;
+    height: 100px;
+    display: block;
+    color: #000;
   }
-  form p{
+
+.addVSC {
+  width: 1000px;
+}
+
+.adddd{
+  width: 1000px;
+}
+  /* form p{
     width: 100%;
     height: 100%;
     text-align: center;
@@ -24,7 +28,7 @@ form{
     height: 100%;
     outline: none;
     opacity: 0;
-  }
+  } */
   /* form button{
     margin: 0;
     color: #fff;

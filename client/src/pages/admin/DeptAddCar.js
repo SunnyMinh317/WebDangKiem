@@ -40,7 +40,6 @@ const DeptAddCar = ({showImport, closeImport}) => {
         // console.log(selectedFile);
         const formData = new FormData();
         formData.append("import-csv", selectedFile);
-
         axios
             .post("/csv/import-csv", formData, {})
             .then((res) => {
@@ -50,9 +49,8 @@ const DeptAddCar = ({showImport, closeImport}) => {
     };
 
     return (
-        <div className={MainLayoutCSS.container}>
             <form action="/import-csv" onSubmit={handleSubmit}>
-                <label htmlFor="upload-excel">
+                <label className= ".adddd"htmlFor="upload-excel">
                     <input
                         type="file"
                         name="upload-excel"
@@ -62,7 +60,7 @@ const DeptAddCar = ({showImport, closeImport}) => {
                     />
                     <div className={FormCSS.fileUploadBtn}>
                         {" "}
-                        <Button
+                        <Button className="addCSV"
                             variant="contained"
                             component="span"
                             endIcon={
@@ -74,7 +72,7 @@ const DeptAddCar = ({showImport, closeImport}) => {
                                 </Icon>
                             }
                         >
-                            Nhập file
+                            Thêm xe đã đăng ký
                         </Button>
                         <div
                             className={FormCSS.selectedFileName}
@@ -100,8 +98,6 @@ const DeptAddCar = ({showImport, closeImport}) => {
                     </Button>
                 </Grid>
             </form>
-            {/* </Grid> */}
-        </div>
     );
 };
 export default DeptAddCar;

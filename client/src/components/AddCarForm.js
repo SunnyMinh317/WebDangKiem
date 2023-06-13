@@ -40,6 +40,8 @@ const AddCarForm = () => {
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
+    const [updateMess, setUpdateMess] = useState(false);
+
 
     const getData = async () => {
         try {
@@ -47,7 +49,7 @@ const AddCarForm = () => {
                 licensePlate: licensePlate,
             });
             setData(res.data);
-            console.log(data[0].licensePlate);
+            setUpdateMess(false)
         } catch (err) {
             setError(true);
             console.error(err);
@@ -56,9 +58,11 @@ const AddCarForm = () => {
 
     const getRegis = async () => {
         try {
+            setUpdateMess(true)
             const res = await axios.post("/vehicle/getAddCarFormRegis", {
                 licensePlate: licensePlate,
             });
+            console.log(res);
         } catch (err) {
             setError(true);
             console.error(err);
@@ -79,13 +83,13 @@ const AddCarForm = () => {
                                 THÔNG TIN XE
                             </Typography>
                         </Grid>
-                        {error && (
+                        {/* {error && (
                             <Grid item xs={6}>
                                 <div className={FormCSS.errorBox}>
                                     Biển số xe không tồn tại
                                 </div>
                             </Grid>
-                        )}
+                        )} */}
 
                         <Grid item xs={6} sm={12}>
                             <StyledTextField
@@ -94,9 +98,9 @@ const AddCarForm = () => {
                             />
                         </Grid>
                         <Grid item xs={6} sm={12}>
-                            <StyledButton onClick={getData}>
+                            {licensePlate && <StyledButton onClick={getData}>
                                 LẤY THÔNG TIN
-                            </StyledButton>
+                            </StyledButton>}
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             {" "}
@@ -428,6 +432,13 @@ const AddCarForm = () => {
                             </StyledButton>
                         </Grid>
                     </Grid>
+                    <div className={FormCSS.alertContainer}>
+                                    {updateMess && (
+                                        <div className={FormCSS.successBox}>
+                                            Cập nhật thông tin thành công
+                                        </div>
+                                    )}
+                    </div>
                 </CardContent>
             </Card>
         </div>
