@@ -6,7 +6,10 @@ import MainLayoutCSS from "../pages/style/MainLayout.module.css";
 import { StyledButton } from "../components/StyledComponent";
 import HomePagePic from "../../src/images/3156627.jpg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import { useContext } from "react";
 const CentreHomePage = () => {
+    const { currentUser } = useContext(AuthContext);
     return (
         <div>
             <HeaderCenter></HeaderCenter>
@@ -20,15 +23,20 @@ const CentreHomePage = () => {
                             <div className={HomePageCSS.subtitleContainer}>
                                 Đăng kiểm nhanh chóng cùng RegistryTotal
                             </div>
-                            <div className={HomePageCSS.btnContainer}>
-                                <Link to="/login">
-                                    <StyledButton
-                                        sx={{ width: "130px", height: "40px" }}
-                                    >
-                                        Đăng nhập
-                                    </StyledButton>
-                                </Link>
-                            </div>
+                            {!(currentUser || currentUser.isAdmin != 0) && (
+                                <div className={HomePageCSS.btnContainer}>
+                                    <Link to="/login">
+                                        <StyledButton
+                                            sx={{
+                                                width: "130px",
+                                                height: "40px",
+                                            }}
+                                        >
+                                            Đăng nhập
+                                        </StyledButton>
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className={HomePageCSS.right}>

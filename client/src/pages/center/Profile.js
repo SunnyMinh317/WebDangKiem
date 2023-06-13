@@ -1,6 +1,5 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import HeaderCenter from "../../components/HeaderCenter";
-import AddCarForm from "../../components/AddCarForm";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 import { AuthContext } from "../../context/authContext";
 import LoginPopup from "../../components/LoginPopup";
@@ -11,11 +10,14 @@ import {
 } from "../../components/StyledComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 import ProfileCSS from "../style/Profile.module.css";
 import AlertDialog from "../../components/AlertDialog";
+import axios from "axios";
+import FormCSS from "../../components/style/Form.module.css";
 
 const Profile = () => {
+    const { currentUser } = useContext(AuthContext);
+
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -37,21 +39,34 @@ const Profile = () => {
     };
 
     // Thay "" thành email và mật khẩu mặc định
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
+    const [infoChange, setInfoChange] = useState({
+        centreId: currentUser.centreId,
+        email: "",
+        password: "",
+    });
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+    const handleChange = (e) => {
+        setInfoChange((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+        console.log("Profile value " + [e.target.name] + ": " + e.target.value);
     };
 
     //TO DO IN BACKEND
-    const handleUpdate = () => {
-        console.log(password + " " + email);
+    const [err, setError] = useState(false);
+    const [updateMess, setUpdateMess] = useState(false);
+    const handleUpdate = async (e) => {
+        setEditable(false);
+        e.preventDefault();
+        try {
+            const res = await axios.post(
+                "/centre/updateCentreInfo",
+                infoChange
+            );
+            console.log(res.data);
+            setUpdateMess(true);
+        } catch (err) {
+            setError(true);
+        }
     };
-    const { currentUser } = useContext(AuthContext);
 
     if (!currentUser || currentUser.isAdmin != 0) {
         return (
@@ -69,7 +84,9 @@ const Profile = () => {
                 <div className={MainLayoutCSS.profileContainer}>
                     <div className={ProfileCSS.centering}>
                         <div className={MainLayoutCSS.profileTitle}>
-                            TÊN TRUNG TÂM
+                            {currentUser
+                                ? currentUser.centreName
+                                : "Tên Trung tâm"}
                         </div>
                         <div className={ProfileCSS.contentWrap}>
                             <div className={ProfileCSS.profilePicContainer}>
@@ -84,83 +101,155 @@ const Profile = () => {
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Mã trung tâm"
-                                            value="Filler Text Fillter Text"
+                                            value={
+                                                currentUser
+                                                    ? currentUser.centreId
+                                                    : ""
+                                            }
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Thành phố"
-                                            value="Filler Text Fillter Text"
+                                            value={
+                                                currentUser
+                                                    ? currentUser.centreCity
+                                                    : ""
+                                            }
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Quận"
-                                            value="Filler Text Fillter Text"
+                                            value={
+                                                currentUser
+                                                    ? currentUser.centreDistrict
+                                                    : ""
+                                            }
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={6}>
                                         <StyledTextField
                                             label="Ngày thành lập"
-                                            value="Filler Text Fillter Text"
+                                            value={
+                                                currentUser
+                                                    ? currentUser.establishedDate
+                                                    : ""
+                                            }
                                             InputProps={{ readOnly: true }}
                                         ></StyledTextField>
                                     </Grid>
                                     <Grid item sx={12} sm={12}>
                                         <StyledTextField
+                                            name="email"
                                             label="Email"
-                                            defaultValue={"email@example.com"}
+                                            defaultValue={
+                                                currentUser
+                                                    ? currentUser.centreEmail
+                                                    : ""
+                                            }
                                             InputProps={{
                                                 readOnly: editable
                                                     ? false
                                                     : true,
                                             }}
-                                            onChange={handleEmailChange}
+                                            onChange={handleChange}
                                         ></StyledTextField>
                                     </Grid>
-                                    <Grid item sx={12} sm={12}>
-                                        <StyledTextField
-                                            label="Password"
-                                            type={
-                                                showPassword
-                                                    ? "text"
-                                                    : "password"
-                                            }
-                                            defaultValue="password"
-                                            name="password"
-                                            InputProps={{
-                                                readOnly: editable
-                                                    ? false
-                                                    : true,
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <IconButton
-                                                            onClick={
-                                                                handleShowPassword
-                                                            }
-                                                        >
-                                                            {showPassword ? (
-                                                                <FontAwesomeIcon
-                                                                    icon={faEye}
-                                                                />
-                                                            ) : (
-                                                                <FontAwesomeIcon
-                                                                    icon={
-                                                                        faEyeSlash
-                                                                    }
-                                                                />
-                                                            )}
-                                                        </IconButton>
-                                                    </InputAdornment>
-                                                ),
-                                            }}
-                                            onChange={handlePasswordChange}
-                                            fullWidth
-                                        />
-                                    </Grid>
+                                    {editable && (
+                                        <Grid item sx={12} sm={12}>
+                                            <StyledTextField
+                                                name="password"
+                                                label="Mật khẩu mới"
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                InputProps={{
+                                                    readOnly: editable
+                                                        ? false
+                                                        : true,
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                onClick={
+                                                                    handleShowPassword
+                                                                }
+                                                            >
+                                                                {showPassword ? (
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faEye
+                                                                        }
+                                                                    />
+                                                                ) : (
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faEyeSlash
+                                                                        }
+                                                                    />
+                                                                )}
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
+                                                onChange={handleChange}
+                                                fullWidth
+                                            />
+                                        </Grid>
+                                    )}
+
+                                    {editable && <Grid item sx={12} sm={12}>
+                                            <StyledTextField
+                                                name="password"
+                                                label="Xác nhận mật khẩu mới"
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                defaultValue={
+                                                    currentUser
+                                                        ? currentUser.centrePassword
+                                                        : ""
+                                                }
+                                                InputProps={{
+                                                    readOnly: editable
+                                                        ? false
+                                                        : true,
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                onClick={
+                                                                    handleShowPassword
+                                                                }
+                                                            >
+                                                                {showPassword ? (
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faEye
+                                                                        }
+                                                                    />
+                                                                ) : (
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faEyeSlash
+                                                                        }
+                                                                    />
+                                                                )}
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
+                                                onChange={handleChange}
+                                                fullWidth
+                                            />
+                                        </Grid>}
+
                                     <Grid item sx={12} sm={6}>
                                         <StyledButton
                                             fullWidth
@@ -178,6 +267,18 @@ const Profile = () => {
                                         </StyledButton>
                                     </Grid>
                                 </Grid>
+                                <div className={FormCSS.alertContainer}>
+                                    {err && (
+                                        <div className={FormCSS.errorBox}>
+                                            Cập nhật không thành công
+                                        </div>
+                                    )}
+                                    {updateMess && (
+                                        <div className={FormCSS.successBox}>
+                                            Cập nhật thông tin thành công
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             <AlertDialog

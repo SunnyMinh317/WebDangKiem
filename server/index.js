@@ -36,6 +36,25 @@ app.get("/data", function (req, res) {
   });
 });
 
+app.get("/getCity", function (req, res) {
+  var sql =
+    "SELECT  * from region;;";
+  db.query(sql, function (err, results) {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+});
+
+
+app.get("/getCity", function (req, res) {
+  var sql =
+    "SELECT  * from region;;";
+  db.query(sql, function (err, results) {
+    if (err) throw err;
+    res.send(results);
+  });
 });

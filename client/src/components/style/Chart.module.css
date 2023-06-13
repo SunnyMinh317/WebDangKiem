@@ -23,3 +23,24 @@
 .dateInput {
     margin-left: 5rem;
 }
+
+.citySelect {
+    width: 20%;
+    margin-left: 6rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 1000px) {
+    .titleCont {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .typeInput {
+        margin-left: 3rem;
+    }
+
+    .dateInput {
+        margin-left: 3rem;
+    }
+}

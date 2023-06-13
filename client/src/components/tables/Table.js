@@ -4,16 +4,37 @@ import TableCSS from "../style/Table.module.css";
 
 import PopUp from "./PopUp";
 import { StyledDataGrid, StyledButton } from "../StyledComponent";
-import { faCircleInfo, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCircleInfo,
+    faPlus,
+    faUpload,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormCSS from "../style/Form.module.css";
-import { Icon } from "@mui/material";
+import { Icon, Toolbar } from "@mui/material";
 import { ExportButton } from "../ExportButton";
 import { DetailColumn } from "./DetailColumn";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
+import {
+    GridToolbar,
+    GridToolbarContainer,
+    GridToolbarColumnsButton,
+    GridToolbarFilterButton,
+    GridToolbarDensitySelector,
+    GridPagination,
+} from "@mui/x-data-grid";
+import { LinearProgress } from "@mui/material";
+import DeptAddCar from "../../pages/admin/DeptAddCar";
 
-const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
+const Table = ({
+    hasExtraCol,
+    uploadFileButton,
+    externalButtons,
+    title,
+    dataLink,
+    columnSet,
+    rowID,
+}) => {
     const columns = useMemo(() => columnSet, []);
     const [data, setData] = useState([]);
 
@@ -32,7 +53,7 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
 
     const getRowId = (row) => {
         idCounter++;
-        return idCounter
+        return idCounter;
     };
 
     const detailColumn = {
@@ -53,6 +74,22 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
         headerAlign: "left",
     };
 
+    const statusColumn = {
+        field: "isRegis",
+        headerName: "TÌNH TRẠNG",
+        width: 150,
+        renderCell: (params) => (
+            <div className={TableCSS.statusContainer}>
+                {params.value === 0 ? (
+                    <div className={TableCSS.regis}>Chưa đăng kiểm</div>
+                ) : (
+                    <div className={TableCSS.noRegis}>Đã đăng kiểm</div>
+                )}
+            </div>
+        ),
+        headerAlign: "left",
+    };
+
     const [isOpen, setIsOpen] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
 
@@ -66,42 +103,96 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
         setIsOpen(false);
     };
 
-    const newCols = [...columns, detailColumn];
+    let newCols;
+    if (hasExtraCol) {
+        newCols = [...columns, statusColumn, detailColumn];
+    } else {
+        newCols = [...columns];
+    }
+
+    function CustomToolbar() {
+        return (
+            <GridToolbarContainer>
+                <GridToolbarColumnsButton />
+                <GridToolbarFilterButton />
+                <GridToolbarDensitySelector />
+            </GridToolbarContainer>
+        );
+    }
+
+    function CustomToolbar() {
+        return (
+            <GridToolbarContainer>
+                <GridToolbarColumnsButton />
+                <GridToolbarFilterButton />
+                <GridToolbarDensitySelector />
+            </GridToolbarContainer>
+        );
+    }
+
+    const [showImport, setShowImport] = useState(false);
+    const processImport = () => {
+        setShowImport(true);
+    };
+
+    const processCloseUpload = () => {
+        setShowImport(false);
+    };
+
+    const closeImport = () => {
+        setShowImport(false);
+    };
 
     return (
         <div className={TableCSS.gridContainer}>
             <div className={TableCSS.title}>{title}</div>
             <div className={TableCSS.externalBtn}>
+                <ExportButton data={data} />
                 {externalButtons && (
-                    <StyledButton onClick={() => {navigate("/");}}
+                    <StyledButton
                         variant="contained"
+                        // component="span"
+                        className={TableCSS.uploadButton}
                         endIcon={
                             <Icon>
                                 <FontAwesomeIcon
-                                    icon={faPlus}
+                                    icon={faUpload}
                                     className={FormCSS.ButtonIcon}
                                 />
                             </Icon>
                         }
-                        style={{ marginRight: "10px" }}
+                        onClick={processImport}
                     >
-                        THÊM
+                        Nhập file
                     </StyledButton>
                 )}
-                <ExportButton data={data} />
+
+                <DeptAddCar showImport={showImport} closeImport={closeImport} />
             </div>
             <div className={TableCSS.container}>
                 <div style={{ width: "80%" }}>
                     <StyledDataGrid
+                        density="comfortable"
+                        slots={{
+                            toolbar: CustomToolbar,
+                            pagination: GridPagination,
+                            loadingOverlay: LinearProgress,
+                        }}
                         rows={data}
                         columns={newCols}
-                        // pagination={false}
                         getRowId={getRowId}
                         autoHeight={true}
                         disableRowSelectionOnClick
-                        rowClassName="custom-row"
                         rowHeight={45}
-                        
+                        initialState={{
+                            pagination: { paginationModel: { pageSize: 25 } },
+                            columns: {
+                                columnVisibilityModel: {
+                                    // Hide columns status and traderName, the other columns will remain visible
+                                    address: false,
+                                },
+                            },
+                        }}
                     />
                 </div>
             </div>

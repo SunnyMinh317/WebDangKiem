@@ -25,6 +25,7 @@ const CenterDSXe = () => {
             <HeaderCenter className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
                 <Table
+                hasExtraCol={true}
                     externalButtons={true}
                     title="DANH SÁCH XE"
                     dataLink="/vehicle/getAllVehicleByCentre"

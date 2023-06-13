@@ -26,6 +26,7 @@ const AdminRegisHistory = () => {
             <HeaderAdmin className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
                 <Table
+                    hasExtraCol={true}
                     externalButtons={true}
                     title="LỊCH SỬ ĐĂNG KIỂM"
                     dataLink="/dept/getRegisDept"

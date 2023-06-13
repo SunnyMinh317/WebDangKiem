@@ -42,7 +42,7 @@
 }
 
 .titleIcon {
-    color: #0e8388;
+    color: var(--orange);
 }
 
 .creditContainer {

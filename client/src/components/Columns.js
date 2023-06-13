@@ -12,6 +12,7 @@ export const ColumnCarList = [
         align: "left",
         headerAlign: "left",
         width: 150,
+        renderCell: (params) => <strong style={{fontWeight:"900"}}>{params.value}</strong>,
     },
     {
         headerName: "HÃNG XE",
@@ -23,6 +24,13 @@ export const ColumnCarList = [
     {
         headerName: "DÒNG XE",
         field: "model",
+        align: "left",
+        headerAlign: "left",
+        width: 150,
+    },
+    {
+        headerName: "ĐỊA CHỈ",
+        field: "address",
         align: "left",
         headerAlign: "left",
         width: 150,
@@ -41,22 +49,6 @@ export const ColumnCarList = [
         headerAlign: "left",
         width: 150,
     },
-
-    // {
-    //     headerName: "NGÀY HẾT HẠN",
-    //     field: "expireDate",
-    //     align: "left",
-    //     headerAlign: "left",
-    //     width: 150,
-    // },
-    {
-        headerName: "Tình trạng",
-        field: "isRegis",
-        align: "left",
-        headerAlign: "left",
-        width: "190",
-    },
-
 ];
 
 export const ColumnCenter = [
@@ -100,11 +92,9 @@ export const ColumnCenter = [
         field: "centreEmail",
         align: "left",
         headerAlign: "left",
-        width: 150,
+        width: 250,
     },
 ];
-
-
 
 export const ColumnCenterCarList = [
     {
@@ -140,53 +130,37 @@ export const ColumnCenterCarList = [
         field: "registrationDate",
         align: "left",
         headerAlign: "left",
-        width: "190",
-    },
-    // {
-    //     headerName: "NGÀY HẾT HẠN",
-    //     field: "expireDate",
-    //     align: "left",
-    //     headerAlign: "left",
-    //     width: "190",
-    // },
-    {
-        headerName: "Tình trạng",
-        field: "isRegis",
-        align: "left",
-        headerAlign: "left",
-        width: "190",
+        width: "250",
     },
 ];
 
 export const ColumnCenterRegis = [
     {
-        headerName: "Biển số",
+        headerName: "BIỂN SỐ",
         field: "licensePlate",
         align: "left",
         headerAlign: "left",
         width: "165",
     },
     {
-        headerName: "Trung tâm",
+        headerName: "TRUNG TÂM",
         field: "centreId",
         align: "left",
         headerAlign: "left",
-        width: "165",
+        width: "200",
     },
     {
-        headerName: "Ngày đăng kiểm",
+        headerName: "NGÀY ĐĂNG KIỂM",
         field: "registrationDate",
         align: "left",
         headerAlign: "left",
-        width: "165",
+        width: "300",
     },
     {
-        headerName: "Ngày hết hạn",
+        headerName: "NGÀY HẾT HẠN",
         field: "expireDate",
         align: "left",
         headerAlign: "left",
-        width: "165",
+        width: "300",
     },
-    
-    
 ];
