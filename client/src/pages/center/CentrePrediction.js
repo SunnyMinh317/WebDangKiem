@@ -23,7 +23,7 @@ const CentrePrediction = () => {
             <HeaderCenter />
             <div className={MainLayoutCSS.centerContainer}>
                 <div className={MainLayoutCSS.graphContainer}>
-                    <Chart/>
+                    <Chart isAdmin={true}/>
                 </div>
             </div>
         </div>

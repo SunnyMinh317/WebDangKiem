@@ -40,8 +40,8 @@ const Profile = () => {
 
     // Thay "" thành email và mật khẩu mặc định
     const [infoChange, setInfoChange] = useState({
-        centreId: currentUser.centreId,
-        email: currentUser.centreEmail,
+        centreId: currentUser?.centreId,
+        email: currentUser?.centreEmail,
         password: "",
     });
 
@@ -90,10 +90,10 @@ const Profile = () => {
                         </div>
                         <div className={ProfileCSS.contentWrap}>
                             <div className={ProfileCSS.profilePicContainer}>
-                                <img
+                                {/* <img
                                     src="https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg"
                                     className={ProfileCSS.profilePic}
-                                />
+                                /> */}
                             </div>
                             <div className={ProfileCSS.infoContainer}>
                                 {" "}

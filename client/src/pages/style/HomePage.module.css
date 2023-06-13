@@ -15,14 +15,24 @@
     font-family: noodle;
     font-size: 4rem;
     letter-spacing: 5px;
-    margin-bottom: 100px;
 }
+.nameContainer {
+    font-family: noodle;
+    font-size: 4rem;
+    letter-spacing: 5px;
+    margin-bottom: 0;
+    font-weight: 300;
+    text-decoration-line: underline;
+    color: rgba(145, 39, 39, 0.756);
 
+}
 .subtitleContainer {
     font-family: titi;
     font-size: larger;
     margin-bottom: 30px;
+    margin-top: 80px;
 }
+
 
 .left {
     width: 40%;

@@ -91,7 +91,7 @@ export const ColumnCenter = [
 
 export const ColumnCenterCarList = [
     {
-        headerName: "SỐ CCCD",
+        headerName: "MÃ CHỦ SỞ HỮU",
         field: "ownerId",
         align: "left",
         headerAlign: "left",
