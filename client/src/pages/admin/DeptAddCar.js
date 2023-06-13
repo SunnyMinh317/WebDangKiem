@@ -35,6 +35,7 @@ const DeptAddCar = ({showImport, closeImport}) => {
     };
 
     const handleSubmit = (event) => {
+        console.log("fucking");
         event.preventDefault();
         // console.log(selectedFile);
         const formData = new FormData();
@@ -48,37 +49,84 @@ const DeptAddCar = ({showImport, closeImport}) => {
     };
 
     return (
-            <form action="/import-csv" onSubmit={handleSubmit} className={FormCSS.csvForm}>
-                <label className={FormCSS.CSVname} htmlFor="upload-excel">
-                    <input
-                        type="file"
-                        name="upload-excel"
-                        id="upload-excel"
-                        accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        onChange={handleFileInput}
-                    />
-                    <div className={FormCSS.fileUploadBtn}>
-                        <Button className={FormCSS.uploadBtn}
-                            variant="contained"
-                            component="span"
-                        >
-                            Thêm xe đã đăng ký
-                        </Button>
-                        <div
-                            className={FormCSS.selectedFileName}
-                            id="selected-file-name"
-                        ></div>
-                    </div>
-                </label>
-                    <Button 
-                        type="submit"
-                        variant="contained"
-                        disabled={!selectedFile}
-                        onClick={closeImport}
+            <form onSubmit={handleSubmit} className={FormCSS.csvForm}>
+                      <label htmlFor="upload-excel" className={FormCSS.CSVname}>
+                        <input
+                            type="file"
+                            name="upload-excel"
+                            id="upload-excel"
+                            accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            onChange={handleFileInput}
+                        />
+                        <div className={FormCSS.fileUploadBtn}>
+                            <Button className={FormCSS.uploadBtn}
+                                variant="contained"
+                                component="span"
+                            >
+                                Nhập file
+                            </Button>
+                            <div
+                                className={FormCSS.selectedFileName}
+                                id="selected-file-name"
+                            ></div>
+                        </div>
+                    </label>
+                    <Grid
+                        // container
+                        // spacing={0}
+                        // direction="column"
+                        // alignItems="center"
+                        // justifyContent="center"
+                        // style={{ marginTop: "10px", marginBottom: "5px" }}
                     >
-                        Submit
-                    </Button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            disabled={!selectedFile}
+                        >
+                            Submit
+                        </Button>
+                    </Grid>
             </form>
+            // <form action="/import-csv" onSubmit={handleSubmit}className={FormCSS.csvForm}>
+            //         <label htmlFor="upload-excel" className={FormCSS.CSVname}>
+            //             <input
+            //                 type="file"
+            //                 name="upload-excel"
+            //                 id="upload-excel"
+            //                 accept=".csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            //                 onChange={handleFileInput}
+            //             />
+            //             <div className={FormCSS.fileUploadBtn}>
+            //                 <Button className={FormCSS.uploadBtn}
+            //                     variant="contained"
+            //                     component="span"
+            //                 >
+            //                     Nhập file
+            //                 </Button>
+            //                 <div
+            //                     className={FormCSS.selectedFileName}
+            //                     id="selected-file-name"
+            //                 ></div>
+            //             </div>
+            //         </label>
+            //         <Grid
+            //             container
+            //             spacing={0}
+            //             direction="column"
+            //             alignItems="center"
+            //             justifyContent="center"
+            //             style={{ marginTop: "10px", marginBottom: "5px" }}
+            //         >
+            //             <Button
+            //                 type="submit"
+            //                 variant="contained"
+            //                 disabled={!selectedFile}
+            //             >
+            //                 Submit
+            //             </Button>
+            //         </Grid>
+            //     </form>
     );
 };
 export default DeptAddCar;

@@ -172,10 +172,9 @@ const Chart = ({ isAdmin }) => {
                 onChange={handleCityChange}
               >
                 <MenuItem value="Toàn quốc">Toàn quốc</MenuItem>
-                <MenuItem value="Hà Nội">Hà Nội</MenuItem>
-                <MenuItem value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</MenuItem>
-                <MenuItem value="TP. Đà Nẵng">TP. Đà Nẵng</MenuItem>
-                <MenuItem value="Long An">Long An</MenuItem>
+                <MenuItem value="Hà Nội">Miền Bắc</MenuItem>
+                <MenuItem value="TP. Hồ Chí Minh">Miền Trung</MenuItem>
+                <MenuItem value="TP. Đà Nẵng">Miền Nam</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -209,7 +208,7 @@ const Chart = ({ isAdmin }) => {
           <Legend />
           <Bar
             dataKey="new_reg_count"
-            name="Xe sắp đăng kiểm"
+            name="Xe đăng kiểm mới"
             fill="var(--orange)"
           />
           <Bar
