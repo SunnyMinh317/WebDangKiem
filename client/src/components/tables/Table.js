@@ -126,8 +126,14 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
                         rowHeight={45}
                         initialState={{
                             pagination: { paginationModel: { pageSize: 25 } },
-                          }}
-                        
+                            columns: {
+                                columnVisibilityModel: {
+                                  // Hide columns status and traderName, the other columns will remain visible
+                                  licensePlate: false,
+                                },
+                              },
+                        }}
+                            
                     />
                 </div>
             </div>
