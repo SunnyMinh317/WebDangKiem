@@ -53,11 +53,13 @@ const Profile = () => {
 
     //TO DO IN BACKEND
     const [err, setError] = useState(null);
-    const handleUpdate =async (e) => {
+    const [updateMess, setUpdateMess] = useState(null)
+    const handleUpdate = async (e) => {
             e.preventDefault();
             try {
                 const res = await axios.post("/centre/updateCentreInfo", infoChange);
-                console.log(res);
+                console.log(res.data);
+                setUpdateMess(res.date)
             } catch (err) {
                 setError(err.response.data);
             }
@@ -69,6 +71,7 @@ const Profile = () => {
                 <HeaderCenter className={MainLayoutCSS.header} />
                 <div className={MainLayoutCSS.contentWrap}>
                     <LoginPopup />
+                    
                 </div>
             </div>
         );

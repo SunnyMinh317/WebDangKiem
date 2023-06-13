@@ -7,11 +7,19 @@ import { StyledDataGrid, StyledButton } from "../StyledComponent";
 import { faCircleInfo, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormCSS from "../style/Form.module.css";
-import { Icon } from "@mui/material";
+import { Icon, Toolbar } from "@mui/material";
 import { ExportButton } from "../ExportButton";
 import { DetailColumn } from "./DetailColumn";
-import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
+import { 
+    GridToolbar,
+    GridToolbarContainer,
+    GridToolbarColumnsButton,
+    GridToolbarFilterButton,
+    GridToolbarDensitySelector,
+    GridPagination,
+    } from "@mui/x-data-grid";
+import { LinearProgress } from '@mui/material';
 
 const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
     const columns = useMemo(() => columnSet, []);
@@ -68,6 +76,16 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
 
     const newCols = [...columns, detailColumn];
 
+    function CustomToolbar() {
+        return (
+          <GridToolbarContainer>
+            <GridToolbarColumnsButton />
+            <GridToolbarFilterButton />
+            <GridToolbarDensitySelector />
+          </GridToolbarContainer>
+        );
+      }
+
     return (
         <div className={TableCSS.gridContainer}>
             <div className={TableCSS.title}>{title}</div>
@@ -93,6 +111,11 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
             <div className={TableCSS.container}>
                 <div style={{ width: "80%" }}>
                     <StyledDataGrid
+                        slots={{
+                            toolbar: CustomToolbar,
+                            pagination: GridPagination,
+                            loadingOverlay: LinearProgress,
+                          }}
                         rows={data}
                         columns={newCols}
                         // pagination={false}
@@ -101,6 +124,9 @@ const Table = ({ externalButtons, title, dataLink, columnSet, rowID }) => {
                         disableRowSelectionOnClick
                         rowClassName="custom-row"
                         rowHeight={45}
+                        initialState={{
+                            pagination: { paginationModel: { pageSize: 25 } },
+                          }}
                         
                     />
                 </div>
