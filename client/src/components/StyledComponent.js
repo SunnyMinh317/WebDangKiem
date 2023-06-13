@@ -23,7 +23,7 @@ export const StyledSelect = styled(Select)({
 
 export const StyledButton = styled(Button)({
     height: "100%",
-    backgroundColor: "var(--sec-dark)",
+    backgroundColor: "var(--orange)",
     color: "var(--white)",
     fontFamily: "titi",
     fontSize: "0.7rem",
@@ -73,7 +73,7 @@ export const StyledDataGrid = styled(DataGrid)({
     },
 
     border: "0px solid transparent",
-    fontSize: "0.7rem",
+    fontSize: "0.8rem",
     fontWeight: "600",
     fontFamily: "titi",
 });

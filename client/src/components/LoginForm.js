@@ -134,17 +134,6 @@ const LoginForm = () => {
                                 Đăng nhập
                             </StyledButton>
                         </Grid>
-                        <Grid xs={12} item className={FormCSS.creditGrid}>
-                            <div className={FormCSS.creditContainer}>
-                                <br />
-                                <p>CREATED BY:</p>
-                                <div className={FormCSS.names}>
-                                    <p>Chu Ngọc Vượng</p>
-                                    <p>Phạm Hoàng Ân</p>
-                                    <p>Vũ Nhật Minh</p>
-                                </div>
-                            </div>
-                        </Grid>
                     </Grid>
                 </CardContent>
             </Card>

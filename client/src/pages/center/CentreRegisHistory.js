@@ -1,4 +1,4 @@
-import {React, useContext, useEffect}  from "react";
+import { React, useContext, useEffect } from "react";
 import HeaderCenter from "../../components/HeaderCenter";
 import MainLayoutCSS from "../style/MainLayout.module.css";
 import Table from "../../components/tables/Table";
@@ -10,22 +10,23 @@ import axios from "axios";
 const CentreRegisHistory = () => {
     const { currentUser } = useContext(AuthContext);
 
-    if(!currentUser || currentUser.isAdmin != 0){
+    if (!currentUser || currentUser.isAdmin != 0) {
         return (
             <div className={MainLayoutCSS.container}>
-            <HeaderCenter className={MainLayoutCSS.header}/>
-            <div className={MainLayoutCSS.contentWrap}>
-                <LoginPopup/>
+                <HeaderCenter className={MainLayoutCSS.header} />
+                <div className={MainLayoutCSS.contentWrap}>
+                    <LoginPopup />
+                </div>
             </div>
-        </div>
-        )
-    } 
+        );
+    }
 
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderCenter className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
                 <Table
+                    hasExtraCol={true}
                     externalButtons={true}
                     title="LỊCH SỬ ĐĂNG KIỂM"
                     dataLink="/centre/getRegisCentre"

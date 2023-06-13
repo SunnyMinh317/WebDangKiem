@@ -29,6 +29,7 @@
 .externalBtn {
     margin-left: 10%;
     margin-top: 1rem;
+    display: flex;
 }
 
 .detailIconContainer {
@@ -40,6 +41,18 @@
 }
 
 .detailIcon {
-    color: var(--dark);
+    color: var(--orange);
     font-size: larger;
+}
+
+.regis {
+    color: #29a847;
+}
+
+.noRegis {
+    color: #c3192a;
+}
+
+.uploadButton {
+    margin-left: 10px;
 }

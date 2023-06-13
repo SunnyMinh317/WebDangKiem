@@ -9,24 +9,24 @@ import LoginPopup from "../../components/LoginPopup";
 const DSXe = () => {
     const { currentUser } = useContext(AuthContext);
 
-    if(!currentUser || currentUser.isAdmin != 1){
+    if (!currentUser || currentUser.isAdmin != 1) {
         return (
             <div className={MainLayoutCSS.container}>
-            <HeaderAdmin className={MainLayoutCSS.header}/>
-            <div className={MainLayoutCSS.contentWrap}>
-                <LoginPopup/>
+                <HeaderAdmin className={MainLayoutCSS.header} />
+                <div className={MainLayoutCSS.contentWrap}>
+                    <LoginPopup />
+                </div>
             </div>
-        </div>
-        )
+        );
     }
-
 
     return (
         <div className={MainLayoutCSS.container}>
             <HeaderAdmin className={MainLayoutCSS.header} />
             <div className={MainLayoutCSS.contentWrap}>
                 <Table
-                    externalButtons={false}
+                    hasExtraCol={true}
+                    externalButtons={true}
                     title="DANH SÁCH XE"
                     dataLink="/vehicle/getAllVehicle"
                     columnSet={ColumnCarList}

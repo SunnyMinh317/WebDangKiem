@@ -28,16 +28,15 @@ import { centreId } from "./LoginForm";
 
 const AddCarForm = () => {
     // =======
-//   const getData = async () => {
-//     const res = await axios.post("/vehicle/getAddCarForm", {licensePlate: licensePlate, centreId: centreId});
-//     console.log(res.data);
-//     return res.data;
+    //   const getData = async () => {
+    //     const res = await axios.post("/vehicle/getAddCarForm", {licensePlate: licensePlate, centreId: centreId});
+    //     console.log(res.data);
+    //     return res.data;
     const [licensePlate, setLicensePlate] = useState("");
 
     const handleLicensePlateChange = (event) => {
         setLicensePlate(event.target.value);
     };
-
 
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
@@ -424,7 +423,9 @@ const AddCarForm = () => {
                             />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <StyledButton onClick={getRegis}>ĐĂNG KIỂM</StyledButton>
+                            <StyledButton onClick={getRegis}>
+                                ĐĂNG KIỂM
+                            </StyledButton>
                         </Grid>
                     </Grid>
                 </CardContent>

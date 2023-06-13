@@ -9,17 +9,17 @@
 
 :root {
   --white: #eaeaea;
-  --logo: #c7d7ff;
+  --logo: #eaeaea;
   --dark-border: #2b3a61;;
-  --dark: #334572;
+  --dark: #24262B;
   --darker:#212d49; 
-  --sec-dark: #4663ac;
+  --sec-dark: #30333a;
   --third-dark: #e1f1fd;
   --fourth-dark: 	#e4f0ff;
   --table-grey: rgb(235, 235, 235);
   --black: #293241;
-  --orange: #EE6C4D;
-  --dark-orange: #dd6b4e;
+  --orange: #821338;
+  --dark-orange: #be3160;
   --background: rgb(231, 231, 231);
 }
 

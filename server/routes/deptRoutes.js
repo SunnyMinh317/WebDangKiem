@@ -10,7 +10,7 @@ const router = express.Router();
 router.get("/getRegByMonth", getRegByMonth)
 router.get("/getRegByYear", getRegByYear)
 router.get("/getRegisDept", getRegisDept)
-router.get("/getRegByQuarter", getRegByYear)
+router.get("/getRegByQuarter", getRegByQuarter)
 router.get("/getStatByYear", getStatByYear)
 router.get("/getStatByMonth", getStatByMonth)
 router.get("/getStatByQuarter", getStatByQuarter)

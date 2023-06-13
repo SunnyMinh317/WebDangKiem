@@ -82,3 +82,16 @@ input {
     border-radius: 4px;
     margin-bottom: 15px;
 }
+
+.successBox {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 2px solid #c3e6cb;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.alertContainer {
+    margin-top: 10px;
+}

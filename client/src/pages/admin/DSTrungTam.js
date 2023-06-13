@@ -19,6 +19,7 @@ const DSTrungTam = () => {
                     <LoginPopup/>
                 ) : (
                 <Table
+                hasExtraCol={false}
                     externalButtons={true}
                     title="DANH SÁCH TRUNG TÂM"
                     dataLink="/centre/getAllCentres"
