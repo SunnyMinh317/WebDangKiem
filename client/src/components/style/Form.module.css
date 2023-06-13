@@ -63,8 +63,9 @@ input {
 }
 
 .csvForm{
-    margin-left: 40px;
+    margin-left: 100px;
     display: flex;
+    padding: 0;
 }
 
 
@@ -83,11 +84,12 @@ input {
     background-color: #444040;
     margin-right: 20px;
     border-radius: 2px;
-
+    padding: 0;
 }
 
 .uploadBtn {
-    background-color: rgb(179, 145, 145);
+    background-color: rgb(240, 238, 238);
+    padding: 0;
 }
 
 .selectedFileName{
