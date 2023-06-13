@@ -2,8 +2,8 @@ import mysql from "mysql2";
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "web_backend_new",
+  password: "12345678",
+  database: "registry_v2",
 });
 
 export default db;
