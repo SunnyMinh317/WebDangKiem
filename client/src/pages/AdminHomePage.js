@@ -23,7 +23,7 @@ const CentreHomePage = () => {
                             <div className={HomePageCSS.subtitleContainer}>
                                 Đăng kiểm nhanh chóng cùng RegistryTotal
                             </div>
-                            {!(currentUser || currentUser.isAdmin != 1) && (
+                            {(!currentUser || currentUser.isAdmin != 1) && (
                                 <div className={HomePageCSS.btnContainer}>
                                     <Link to="/login">
                                         <StyledButton
